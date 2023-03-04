@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <script src="res/jquery-3.6.2.min.js"></script>
+    <style>
+        @font-face {
+            font-family: berlin-bold;
+            src: url(res/font/din_bold.ttf);
+        }
+
+        @font-face {
+            font-family: berlin-regular;
+            src: url(res/font/din_normal.ttf);
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            font-family: berlin-bold;
+            color: #6f6f6f;
+            user-select: none;
+        }
+
+        .top {
+            width: 100vw;
+            height: 10%;
+        }
+
+        .content {
+            height: 90%;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+
+        .profile-bg {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .profile-txt {
+            width: 100vw;
+            text-align: center;
+            padding: 2vh 0;
+        }
+
+        .red-btn,
+        .green-btn {
+            width: 90vw;
+            max-width: 500px;
+            height: 60px;
+            font-size: x-large;
+            background-color: #b91111;
+            box-shadow: 1px 3px #620101;
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .red-btn:active {
+            box-shadow: 0px 0px #012201 !important;
+            transform: translate(1px, 3px);
+        }
+
+        .green-btn:active {
+            box-shadow: 0px 0px #012201 !important;
+            transform: translate(1px, 3px);
+        }
+
+        .green-btn {
+            background-color: #01a80c;
+            box-shadow: 1px 3px #01620b;
+        }
+
+        .content-btm {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 3vh;
+        }
+
+        .settings-bg,
+        .settings-bg2 {
+            width: 80vw;
+            max-width: 500px;
+            border: solid 4px #6f6f6f;
+            border-radius: 10px;
+            padding: 2vh 5vw;
+            margin: 10px 10px;
+            font-family: berlin-regular;
+        }
+
+        .settings-bg2 {
+            width: 70vw;
+            max-width: 450px;
+            text-align: center;
+            border-color: #ffbd22;
+        }
+
+        .settings-bg:active,
+        .settings-bg2:active {
+            transform: scale(0.95);
+        }
+
+        .con {
+            padding: 1vh 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .lang-con {
+            width: 100%;
+            transition: all 0.4s ease-out;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .con-bg {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .con-bg2 {
+            justify-content: center;
+        }
+
+        .con-txt {
+            font-size: large;
+        }
+
+        .fill-bg {
+            width: 40px;
+            height: 25px;
+            border-radius: 15px;
+            background-color: #207105;
+            display: flex;
+            align-items: center;
+            transition: all 0.5s ease-out;
+        }
+
+        .fill {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+            transform: translateX(80%);
+            transition: all 0.5s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top"></div>
+    <div class="content">
+        <div class="profile-bg">
+            <img src="res/image/profile.png" class="profile-img">
+            <div class="profile-txt"></div>
+        </div>
+        <div class="content-btm">
+            <div class="con">
+                <div class="settings-bg dark-mode">
+                    <div class="con-bg">
+                        <div class="con-txt">Dark Mode</div>
+                        <div class="fill-bg">
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="settings-bg course">
+                    <div class="con-bg">
+                        <div class="con-txt">Courses</div>
+                        <div class="con-txt2">></div>
+                    </div>
+                </div>
+                <div class="con lang-con"></div>
+                <div class="green-btn add-btn">ADD LANGUAGE</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        langDict = JSON.parse(localStorage.langDict);
+        langLen = Object.keys(langDict).length;
+        console.log(langLen);
+        $(".profile-txt").text(localStorage.email);
+        courseAppended = false;
+        $(".course").click(function () {
+            if (courseAppended) {
+                $(".lang-con").empty();
+                courseAppended = false;
+            } else {
+                courseAppended = true;
+                for (k in langDict) {
+                    left = k.slice(0, 3); right = k.slice(4, 7);
+                    $(".lang-con").append(`<div class="settings-bg2" onclick="openLang('${left}', '${right}');"><div class="con-bg2"><div class="con-txt">${langTxt(left)} > ${langTxt(right)}</div></div></div>`);
+                }
+            }
+        });
+
+        function langTxt(index) {
+            if (index == "eng") return "English";
+            if (index == "hin") return "Hindi";
+            if (index == "tam") return "Tamil";
+            if (index == "mal") return "Malayalam";
+        }
+
+        function openLang(learningLang, yourLang) {
+            console.log(learningLang, yourLang);
+            localStorage.currentLang = learningLang;
+            localStorage.yourLang = yourLang;
+            canSync = parseInt(localStorage.canSync);
+            canSync += 2; localStorage.canSync = canSync;
+
+            parent.location.reload();
+        }
+
+        $(".add-btn").click(function () {
+            parent.location = "language.html";
+        });
+
+        function checkMode() {
+            if (localStorage.darkMode == null) {
+                window.parent.$('body').css({ backgroundColor: 'white' });
+                $(".fill").css({ transform: 'translateX(20%)' });
+                $(".fill-bg").css({ backgroundColor: "#868686" });
+            } else {
+                window.parent.$('body').css({ backgroundColor: 'black' });
+                $(".fill").css({ transform: 'translateX(80%)' });
+                $(".fill-bg").css({ backgroundColor: "green" });
+            }
+        } checkMode();
+
+        $(".dark-mode").click(function () {
+            if (localStorage.darkMode == null) localStorage.darkMode = 1;
+            else localStorage.removeItem("darkMode");
+            checkMode();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="res/jquery-3.6.2.min.js"></script>
+    <title>New Words</title>
+    <style>
+        @font-face {
+            font-family: berlin-bold;
+            src: url(res/font/din_bold.ttf);
+        }
+
+        @font-face {
+            font-family: berlin-regular;
+            src: url(res/font/din_normal.ttf);
+        }
+
+        body,
+        html {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            font-family: berlin-bold;
+            user-select: none;
+            color: #6f6f6f;
+            transition: all 0.4s ease-in;
+        }
+
+        .ti {
+            font-size: xx-large;
+            padding-left: 2vw;
+            margin: 2vh 0;
+            height: 5vh;
+        }
+
+        .q-bg {
+            height: 95vh;
+            overflow-y: scroll;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding-bottom: 100px;
+        }
+
+        .q-ct {
+            width: fit-content;
+            height: 60px;
+            text-align: center;
+            font-size: large;
+            border-radius: 10px;
+            border: solid 4px #696969;
+            padding: 0 4vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2vh 5vw;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function checkMode() {
+            if (localStorage.darkMode == null) $('body').css({ backgroundColor: 'white' });
+            else $('body').css({ backgroundColor: 'black' });
+        }
+        checkMode();
+        $("body").append(`<script src="res/var/word/unit${localStorage.select_unit}.js" id="_src">`);
+    </script>
+    <div class="ti">Lesson 1</div>
+    <div class="q-bg q-bg1"></div>
+
+    <script>
+        $(document).ready(function () {
+            currentLang = localStorage.currentLang;
+            yourLang = localStorage.yourLang;
+            console.log(window[currentLang + "Word"]);
+            console.log(hinWord);
+            _index = 0;
+            for (i in window[currentLang + "Word"]) {
+                _index++;
+                $(".q-bg1").append(`<div class="q-ct">${_index}. ${window[currentLang + "Word"][i]} ${window[yourLang + "Word"][i]}</div>`);
+                console.log(window[currentLang + "Word"][i]);
+            }
+        });
+    </script>
+</body>
+
+</html>

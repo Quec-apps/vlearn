@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="res/jquery-3.6.2.min.js"></script>
+    <title>Choose language</title>
+    <style>
+        @font-face {
+            font-family: berlin-bold;
+            src: url(res/font/din_bold.ttf);
+        }
+
+        @font-face {
+            font-family: berlin-regular;
+            src: url(res/font/din_normal.ttf);
+        }
+
+        body, html {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            font-family: berlin-bold;
+            user-select: none;
+            color: #6f6f6f;
+        }
+
+        .top {
+            width: 100vw;
+            height: 10vh;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+        }
+
+        .back-img {
+            width: 25px;
+            height: 25px;
+            display: none;
+            margin-left: 4vw;
+        }
+
+        .mid {
+            max-width: 500px;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .btm {
+            height: 30vh;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            flex-wrap: wrap;
+        }
+
+        .dark-border {
+            border-color: #444444;
+        }
+
+        .dark-text {
+            border-color: #444444;
+        }
+
+        .light-border {
+            border-color: #bebebe;
+        }
+
+        .light-text {
+            border-color: #bebebe;
+        }
+
+        .gray-btn {
+            width: 90vw;
+            max-width: 500px;
+            height: 60px;
+            background-color: #b6b6b6;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 1px 3px #696969;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gray-btn:active {
+            box-shadow: 0px 0px #012201 !important;
+            transform: translate(1px, 3px);
+        }
+
+        .your-lang-btn {
+            display: none;
+        }
+
+        .lang-bg-con,
+        .lang2-bg-con {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .txt {
+            width: 100%;
+            font-size: x-large;
+        }
+
+        .lang-bg,
+        .lang2-bg {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-content: center;
+            transition: all ease-in-out 0.4s;
+        }
+
+        .lang2-bg {
+            transform: translateX(-100%);
+            opacity: 0;
+            display: none;
+        }
+
+        .lang-con {
+            width: 70vw;
+            height: 60px;
+            max-width: 400px;
+            border-style: solid;
+            border-width: 4px;
+            border-radius: 10px;
+            text-align: center;
+            color: #8a8a8a;
+            font-size: x-large;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lang2-con {
+            width: 50px;
+            height: 50px;
+            font-size: small;
+            border-style: solid;
+            border-width: 4px;
+            border-radius: 10px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .error-show {
+            width: 100%;
+            height: 10px;
+            font-size: large;
+            color: red;
+            font-family: berlin-regular;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        if (localStorage.darkMode != null) $("body").css({ backgroundColor: 'black' });
+        else $("body").css({ backgroundColor: 'white' });
+    </script>
+    <div class="top">
+        <img src="res/image/close.svg" class="back-img">
+    </div>
+    <div class="mid">
+        <div class="lang-bg">
+            <div class="txt">Which language you want to learn?</div>
+            <div class="lang-bg-con" onclick="selectedLang = 'eng'">
+                <div class="lang2-con dark-border">Aa</div>
+                <div class="lang-con dark-border">English</div>
+            </div>
+            <div class="lang-bg-con" onclick="selectedLang = 'hin'">
+                <div class="lang2-con dark-border">अ</div>
+                <div class="lang-con dark-border">Hindi</div>
+            </div>
+            <div class="lang-bg-con" onclick="selectedLang = 'mal'">
+                <div class="lang2-con dark-border">അ</div>
+                <div class="lang-con dark-border">Malayalam</div>
+            </div>
+        </div>
+        <div class="lang2-bg eng-bg">
+            <div class="txt">Which language do you speak?</div>
+            <div class="lang2-bg-con" onclick="yourLang = 'hin'">
+                <div class="lang2-con dark-border">अ > A</div>
+                <div class="lang-con dark-border">Hindi</div>
+            </div>
+            <div class="lang2-bg-con" onclick="yourLang = 'mal'">
+                <div class="lang2-con dark-border">അ > A</div>
+                <div class="lang-con dark-border">Malayalam</div>
+            </div>
+            <div class="error-show"></div>
+        </div>
+        <div class="lang2-bg hin-bg">
+            <div class="txt">Which language do you speak?</div>
+            <div class="lang2-bg-con" onclick="yourLang = 'eng'">
+                <div class="lang2-con dark-border">A > अ</div>
+                <div class="lang-con dark-border">English</div>
+            </div>
+            <div class="lang2-bg-con" onclick="yourLang = 'mal'">
+                <div class="lang2-con dark-border">അ > अ</div>
+                <div class="lang-con dark-border">Malayalam</div>
+            </div>
+            <div class="error-show"></div>
+        </div>
+        <div class="lang2-bg mal-bg">
+            <div class="txt">Which language do you speak?</div>
+            <div class="lang2-bg-con" onclick="yourLang = 'eng'">
+                <div class="lang2-con dark-border">A > അ</div>
+                <div class="lang-con dark-border">English</div>
+            </div>
+            <div class="lang2-bg-con" onclick="yourLang = 'hin'">
+                <div class="lang2-con dark-border">अ > അ</div>
+                <div class="lang-con dark-border">Hindi</div>
+            </div>
+            <div class="error-show"></div>
+        </div>
+    </div>
+    <div class="btm">
+        <div class="gray-btn learning-lang-btn">SELECT</div>
+        <div class="gray-btn your-lang-btn">SELECT</div>
+    </div>
+    <script>
+        if (localStorage.darkMode != null) $("body").css({ backgroundColor: 'black' });
+        selectedLang = "";
+        yourLang = "";
+        langProceed = false;
+        $(".lang-con").click(function () {
+            langProceed = true;
+            $(".lang-con").css({ borderColor: 'inherit', color: 'inherit' })
+            $(this).css({ borderColor: 'green', color: 'green' });
+            $(".learning-lang-btn").css({ backgroundColor: 'green', boxShadow: '1px 3px #093f12' });
+        });
+
+        $(".learning-lang-btn").click(function () {
+            if (!langProceed)
+                return;
+            
+            $(this).fadeOut(0);
+            $(".back-img").fadeIn(0);
+            learningLang();
+            $(".lang-bg").css({ transform: "translateX(100%)", opacity: "0" });
+            setTimeout(() => {
+                $("." + selectedLang + "-bg").css({ display: "flex", transform: "translateX(0%)", opacity: "1" });
+                $(".your-lang-btn").css({ display: 'flex' });
+            }, 100);
+        });
+        canProceed = false;
+        $(".lang2-bg-con").click(function () {
+            canProceed = true;
+            $(".your-lang-btn").css({ backgroundColor: '#01a80c', boxShadow: '#01a80c' });
+        });
+
+        $(".your-lang-btn").click(function () {
+            if (!canProceed) return;
+
+            if (langDict.hasOwnProperty(currentLang + "-" + yourLang)) {
+                console.log("You are already learning this pairs");
+                $(".error-show").html("*You are already learning this");
+            } else {
+                langDict[currentLang + "-" + yourLang] = 1;
+                lessonDict[currentLang + "-" + yourLang] = 1;
+                xpDict[currentLang + "-" + yourLang] = 0;
+                delete langDict[currentLang];
+                localStorage.setItem("langDict", JSON.stringify(langDict));
+                localStorage.setItem("lessonDict", JSON.stringify(lessonDict));
+                localStorage.setItem("xpDict", JSON.stringify(xpDict));
+                localStorage.currentLang = selectedLang;
+                localStorage.yourLang = yourLang;
+                canSync = parseInt(localStorage.canSync); canSync += 2; localStorage.canSync = canSync;
+
+                window[currentLang + "-" + yourLang + "-crct"] = { "1": 0 };
+                window[currentLang + "-" + yourLang + "-total"] = { "1": 0 };
+
+                location.replace("content.html");
+            }
+        });
+
+        if (localStorage.langDict != null) {
+            langDict = JSON.parse(localStorage.langDict);
+            lessonDict = JSON.parse(localStorage.lessonDict);
+            xpDict = JSON.parse(localStorage.xpDict);
+        }
+        else {
+            langDict = {} //This dict contains all studying lang and its level
+            lessonDict = {} //this dict contains all studying lang of its current lesson
+            xpDict = {}
+        }
+
+        function learningLang() {
+            currentLang = selectedLang;
+        }
+
+        $(".back-img").click(function () {
+            location.reload();
+        });
+
+//delete langDict["eng"];
+    </script>
+</body>
+
+</html>

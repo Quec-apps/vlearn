@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet</title>
+    <script src="res/jquery-3.6.2.min.js"></script>
+<style>
+@font-face {
+    font-family: berlin-bold;
+    src: url(res/font/din_bold.ttf);
+}
+@font-face {
+    font-family: berlin-regular;
+    src: url(res/font/din_normal.ttf);
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+    font-family: berlin-bold;
+    user-select: none;
+    color: #6f6f6f;
+}
+.con {
+    display: none; justify-content: space-around; flex-wrap: wrap;
+}
+.box {
+    width: 30px;
+    padding: 6px 0;
+    border: solid 2px gray;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    margin: 2vh 0;
+}
+.m-box {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+} .s-box {
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+}
+
+.five {
+    flex-basis: 17%;
+}
+.empty {
+    border: none;
+    background-color: #6f6f6f;
+}
+.title {
+    width: 100%;
+    margin: 6vh 0;
+    padding-left: 2vw;
+}
+</style>
+</head>
+<body>
+    <!-- hin -->
+    <div class="con hin-eng">
+        <div class="title">Hindi Consonants</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">क</div><div class="s-box">ka</div></div>
+        <div class="box five"><div class="m-box">ख</div><div class="s-box">kha</div></div>
+        <div class="box five"><div class="m-box">ग</div><div class="s-box">ga</div></div>
+        <div class="box five"><div class="m-box">घ</div><div class="s-box">gha</div></div>
+        <div class="box five"><div class="m-box">ङ</div><div class="s-box">nga</div></div>
+        <!-- row2 -->
+        <div class="box five"><div class="m-box">च</div><div class="s-box">ca</div></div>
+        <div class="box five"><div class="m-box">छ</div><div class="s-box">cha</div></div>
+        <div class="box five"><div class="m-box">ज</div><div class="s-box">ja</div></div>
+        <div class="box five"><div class="m-box">झ</div><div class="s-box">jha</div></div>
+        <div class="box five"><div class="m-box">ञ</div><div class="s-box">nya</div></div>
+        <!-- row3 -->
+        <div class="box five"><div class="m-box">ट</div><div class="s-box">ta</div></div>
+        <div class="box five"><div class="m-box">ठ</div><div class="s-box">tha</div></div>
+        <div class="box five"><div class="m-box">ड</div><div class="s-box">da</div></div>
+        <div class="box five"><div class="m-box">ढ</div><div class="s-box">dha</div></div>
+        <div class="box five"><div class="m-box">ण</div><div class="s-box">n</div></div>
+        <!-- row4 -->
+        <div class="box five"><div class="m-box">त</div><div class="s-box">t</div></div>
+        <div class="box five"><div class="m-box">थ</div><div class="s-box">tha</div></div>
+        <div class="box five"><div class="m-box">द</div><div class="s-box">da</div></div>
+        <div class="box five"><div class="m-box">ध</div><div class="s-box">dha</div></div>
+        <div class="box five"><div class="m-box">न</div><div class="s-box">na</div></div>
+        <!-- row5 -->
+        <div class="box five"><div class="m-box">प</div><div class="s-box">pa</div></div>
+        <div class="box five"><div class="m-box">फ</div><div class="s-box">pha</div></div>
+        <div class="box five"><div class="m-box">ब</div><div class="s-box">ba</div></div>
+        <div class="box five"><div class="m-box">भ</div><div class="s-box">bha</div></div>
+        <div class="box five"><div class="m-box">म</div><div class="s-box">ma</div></div>
+        <!-- row6 -->
+        <div class="box five"><div class="m-box">य</div><div class="s-box">ya</div></div>
+        <div class="box five"><div class="m-box">र</div><div class="s-box">ra</div></div>
+        <div class="box five"><div class="m-box">ल</div><div class="s-box">la</div></div>
+        <div class="box five"><div class="m-box">व</div><div class="s-box">va</div></div>
+        <div class="box five empty"></div>
+        <!-- row7 -->
+        <div class="box five"><div class="m-box">श</div><div class="s-box">sha</div></div>
+        <div class="box five"><div class="m-box">ष</div><div class="s-box">shha</div></div>
+        <div class="box five"><div class="m-box">स</div><div class="s-box">sa</div></div>
+        <div class="box five"><div class="m-box">ह</div><div class="s-box">ha</div></div>
+        <div class="box five empty"></div>
+
+
+        <div class="title">Independent Vowels</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">अ</div><div class="s-box">a</div></div>
+        <div class="box five"><div class="m-box">आ</div><div class="s-box">aa</div></div>
+        <div class="box five"><div class="m-box">इ</div><div class="s-box">e</div></div>
+        <div class="box five"><div class="m-box">ई</div><div class="s-box">i</div></div>
+        <div class="box five"><div class="m-box">उ</div><div class="s-box">u</div></div>
+        <div class="box five"><div class="m-box">ऊ</div><div class="s-box">uu</div></div>
+        <div class="box five"><div class="m-box">ए</div><div class="s-box">a</div></div>
+        <div class="box five"><div class="m-box">ऐ</div><div class="s-box">ae</div></div>
+        <div class="box five"><div class="m-box">ओ</div><div class="s-box">o</div></div>
+        <div class="box five"><div class="m-box">औ</div><div class="s-box">ao</div></div>
+        <div class="box five"><div class="m-box">अं</div><div class="s-box">am</div></div>
+        <div class="box five"><div class="m-box">अः</div><div class="s-box">a:</div></div>
+
+
+        <div class="title">Dependent Vowels</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">ा</div><div class="s-box">aa</div></div>
+        <div class="box five"><div class="m-box">ि</div><div class="s-box">i</div></div>
+        <div class="box five"><div class="m-box">ी</div><div class="s-box">ii</div></div>
+        <div class="box five"><div class="m-box">ु</div><div class="s-box">u</div></div>
+        <div class="box five"><div class="m-box">ू</div><div class="s-box">uu</div></div>
+        <div class="box five"><div class="m-box">ृ</div><div class="s-box">r</div></div>
+        <div class="box five"><div class="m-box">ॄ</div><div class="s-box">rr</div></div>
+        <div class="box five"><div class="m-box">ॅ</div><div class="s-box">e</div></div>
+        <div class="box five"><div class="m-box">ॆ</div><div class="s-box">e</div></div>
+        <div class="box five"><div class="m-box">े</div><div class="s-box">e</div></div>
+        <div class="box five"><div class="m-box">ै</div><div class="s-box">ai</div></div>
+        <div class="box five"><div class="m-box">ॉ</div><div class="s-box">o</div></div>
+        <div class="box five"><div class="m-box">ॊ</div><div class="s-box">o</div></div>
+        <div class="box five"><div class="m-box">ो</div><div class="s-box">o</div></div>
+        <div class="box five"><div class="m-box">ौ</div><div class="s-box">au</div></div>
+
+    </div>
+
+    <div class="con hin-mal">
+        <div class="title">Hindi Consonants</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">क</div><div class="s-box">ക</div></div>
+        <div class="box five"><div class="m-box">ख</div><div class="s-box">ഖ</div></div>
+        <div class="box five"><div class="m-box">ग</div><div class="s-box">ഗ</div></div>
+        <div class="box five"><div class="m-box">घ</div><div class="s-box">ഘ</div></div>
+        <div class="box five"><div class="m-box">ङ</div><div class="s-box">ങ</div></div>
+        <!-- row2 -->
+        <div class="box five"><div class="m-box">च</div><div class="s-box">ച</div></div>
+        <div class="box five"><div class="m-box">छ</div><div class="s-box">ഛ</div></div>
+        <div class="box five"><div class="m-box">ज</div><div class="s-box">ജ</div></div>
+        <div class="box five"><div class="m-box">झ</div><div class="s-box">ഝ</div></div>
+        <div class="box five"><div class="m-box">ञ</div><div class="s-box">ഞ</div></div>
+        <!-- row3 -->
+        <div class="box five"><div class="m-box">ट</div><div class="s-box">ട</div></div>
+        <div class="box five"><div class="m-box">ठ</div><div class="s-box">ഠ</div></div>
+        <div class="box five"><div class="m-box">ड</div><div class="s-box">ഡ</div></div>
+        <div class="box five"><div class="m-box">ढ</div><div class="s-box">ഢ</div></div>
+        <div class="box five"><div class="m-box">ण</div><div class="s-box">ണ</div></div>
+        <!-- row4 -->
+        <div class="box five"><div class="m-box">त</div><div class="s-box">ത</div></div>
+        <div class="box five"><div class="m-box">थ</div><div class="s-box">ഥ</div></div>
+        <div class="box five"><div class="m-box">द</div><div class="s-box">ദ</div></div>
+        <div class="box five"><div class="m-box">ध</div><div class="s-box">ധ</div></div>
+        <div class="box five"><div class="m-box">न</div><div class="s-box">ന</div></div>
+        <!-- row5 -->
+        <div class="box five"><div class="m-box">प</div><div class="s-box">പ</div></div>
+        <div class="box five"><div class="m-box">फ</div><div class="s-box">ഫ</div></div>
+        <div class="box five"><div class="m-box">ब</div><div class="s-box">ബ</div></div>
+        <div class="box five"><div class="m-box">भ</div><div class="s-box">ഭ</div></div>
+        <div class="box five"><div class="m-box">म</div><div class="s-box">മ</div></div>
+        <!-- row6 -->
+        <div class="box five"><div class="m-box">य</div><div class="s-box">യ</div></div>
+        <div class="box five"><div class="m-box">र</div><div class="s-box">ര</div></div>
+        <div class="box five"><div class="m-box">ल</div><div class="s-box">ല</div></div>
+        <div class="box five"><div class="m-box">व</div><div class="s-box">വ</div></div>
+        <div class="box five empty"></div>
+        <!-- row7 -->
+        <div class="box five"><div class="m-box">श</div><div class="s-box">ശ</div></div>
+        <div class="box five"><div class="m-box">ष</div><div class="s-box">ഷ</div></div>
+        <div class="box five"><div class="m-box">स</div><div class="s-box">സ</div></div>
+        <div class="box five"><div class="m-box">ह</div><div class="s-box">ഹ</div></div>
+        <div class="box five empty"></div>
+
+
+        <div class="title">Independent Vowels</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">अ</div><div class="s-box">അ</div></div>
+        <div class="box five"><div class="m-box">आ</div><div class="s-box">ആ</div></div>
+        <div class="box five"><div class="m-box">इ</div><div class="s-box">ഇ</div></div>
+        <div class="box five"><div class="m-box">ई</div><div class="s-box">ഈ</div></div>
+        <div class="box five"><div class="m-box">उ</div><div class="s-box">ഉ</div></div>
+        <div class="box five"><div class="m-box">ऊ</div><div class="s-box">ഊ</div></div>
+        <div class="box five"><div class="m-box">ए</div><div class="s-box">ഋ</div></div>
+        <div class="box five"><div class="m-box">ऐ</div><div class="s-box">എ</div></div>
+        <div class="box five"><div class="m-box">ओ</div><div class="s-box">ഏ</div></div>
+        <div class="box five"><div class="m-box">औ</div><div class="s-box">ഒ</div></div>
+        <div class="box five"><div class="m-box">अं</div><div class="s-box">ആം</div></div>
+        <div class="box five"><div class="m-box">अः</div><div class="s-box">അ:</div></div>
+
+
+        <div class="title">Dependent Vowels</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">ा</div><div class="s-box">aa</div></div>
+        <div class="box five"><div class="m-box">ि</div><div class="s-box">i</div></div>
+        <div class="box five"><div class="m-box">ी</div><div class="s-box">ii</div></div>
+        <div class="box five"><div class="m-box">ु</div><div class="s-box">u</div></div>
+        <div class="box five"><div class="m-box">ू</div><div class="s-box">uu</div></div>
+        <div class="box five"><div class="m-box">ृ</div><div class="s-box">r</div></div>
+        <div class="box five"><div class="m-box">ॄ</div><div class="s-box">rr</div></div>
+        <div class="box five"><div class="m-box">ॅ</div><div class="s-box">e</div></div>
+        <div class="box five"><div class="m-box">ॆ</div><div class="s-box">e</div></div>
+        <div class="box five"><div class="m-box">े</div><div class="s-box">e</div></div>
+        <div class="box five"><div class="m-box">ै</div><div class="s-box">ai</div></div>
+        <div class="box five"><div class="m-box">ॉ</div><div class="s-box">o</div></div>
+        <div class="box five"><div class="m-box">ॊ</div><div class="s-box">o</div></div>
+        <div class="box five"><div class="m-box">ो</div><div class="s-box">o</div></div>
+        <div class="box five"><div class="m-box">ौ</div><div class="s-box">au</div></div>
+
+    </div>
+
+    <!-- eng -->
+    <div class="con eng-hin">
+        <div class="title">Capital Letter</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">A</div><div class="s-box">ए</div></div>
+        <div class="box five"><div class="m-box">B</div><div class="s-box">बी</div></div>
+        <div class="box five"><div class="m-box">C</div><div class="s-box">सी</div></div>
+        <div class="box five"><div class="m-box">D</div><div class="s-box">डी</div></div>
+        <div class="box five"><div class="m-box">E</div><div class="s-box">इ</div></div>
+        <!-- row2 -->
+        <div class="box five"><div class="m-box">F</div><div class="s-box">एफ</div></div>
+        <div class="box five"><div class="m-box">G</div><div class="s-box">जी</div></div>
+        <div class="box five"><div class="m-box">H</div><div class="s-box">एच</div></div>
+        <div class="box five"><div class="m-box">I</div><div class="s-box">ऐ</div></div>
+        <div class="box five"><div class="m-box">J</div><div class="s-box">जे</div></div>
+        <!-- row3 -->
+        <div class="box five"><div class="m-box">K</div><div class="s-box">के</div></div>
+        <div class="box five"><div class="m-box">L</div><div class="s-box">एल</div></div>
+        <div class="box five"><div class="m-box">M</div><div class="s-box">एम</div></div>
+        <div class="box five"><div class="m-box">N</div><div class="s-box">एन</div></div>
+        <div class="box five"><div class="m-box">O</div><div class="s-box">ऊ</div></div>
+        <!-- row4 -->
+        <div class="box five"><div class="m-box">P</div><div class="s-box">पी</div></div>
+        <div class="box five"><div class="m-box">Q</div><div class="s-box">क्यू</div></div>
+        <div class="box five"><div class="m-box">R</div><div class="s-box">आर</div></div>
+        <div class="box five"><div class="m-box">S</div><div class="s-box">एस</div></div>
+        <div class="box five"><div class="m-box">T</div><div class="s-box">टी</div></div>
+        <!-- row5 -->
+        <div class="box five"><div class="m-box">U</div><div class="s-box">यू</div></div>
+        <div class="box five"><div class="m-box">V</div><div class="s-box">वि</div></div>
+        <div class="box five"><div class="m-box">W</div><div class="s-box">डब्ल्यू</div></div>
+        <div class="box five"><div class="m-box">X</div><div class="s-box">एक्स</div></div>
+        <div class="box five"><div class="m-box">Y</div><div class="s-box">वाई</div></div>
+        <!-- row6 -->
+        <div class="box five"><div class="m-box">Z</div><div class="s-box">जेड</div></div>
+        <div class="box five empty"></div>
+        <div class="box five empty"></div>
+        <div class="box five empty"></div>
+        <div class="box five empty"></div>
+
+
+        <div class="title">Small Letter</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">a</div><div class="s-box">ए</div></div>
+        <div class="box five"><div class="m-box">b</div><div class="s-box">बी</div></div>
+        <div class="box five"><div class="m-box">c</div><div class="s-box">सी</div></div>
+        <div class="box five"><div class="m-box">d</div><div class="s-box">डी</div></div>
+        <div class="box five"><div class="m-box">e</div><div class="s-box">इ</div></div>
+        <!-- row2 -->
+        <div class="box five"><div class="m-box">f</div><div class="s-box">एफ</div></div>
+        <div class="box five"><div class="m-box">g</div><div class="s-box">जी</div></div>
+        <div class="box five"><div class="m-box">h</div><div class="s-box">एच</div></div>
+        <div class="box five"><div class="m-box">i</div><div class="s-box">ऐ</div></div>
+        <div class="box five"><div class="m-box">j</div><div class="s-box">जे</div></div>
+        <!-- row3 -->
+        <div class="box five"><div class="m-box">k</div><div class="s-box">के</div></div>
+        <div class="box five"><div class="m-box">l</div><div class="s-box">एल</div></div>
+        <div class="box five"><div class="m-box">m</div><div class="s-box">एम</div></div>
+        <div class="box five"><div class="m-box">n</div><div class="s-box">एन</div></div>
+        <div class="box five"><div class="m-box">o</div><div class="s-box">ऊ</div></div>
+        <!-- row4 -->
+        <div class="box five"><div class="m-box">p</div><div class="s-box">पी</div></div>
+        <div class="box five"><div class="m-box">q</div><div class="s-box">क्यू</div></div>
+        <div class="box five"><div class="m-box">r</div><div class="s-box">आर</div></div>
+        <div class="box five"><div class="m-box">s</div><div class="s-box">एस</div></div>
+        <div class="box five"><div class="m-box">t</div><div class="s-box">टी</div></div>
+        <!-- row5 -->
+        <div class="box five"><div class="m-box">u</div><div class="s-box">यू</div></div>
+        <div class="box five"><div class="m-box">v</div><div class="s-box">वि</div></div>
+        <div class="box five"><div class="m-box">w</div><div class="s-box">डब्ल्यू</div></div>
+        <div class="box five"><div class="m-box">x</div><div class="s-box">एक्स</div></div>
+        <div class="box five"><div class="m-box">y</div><div class="s-box">वाई</div></div>
+        <!-- row6 -->
+        <div class="box five"><div class="m-box">z</div><div class="s-box">जेड</div></div>
+        <div class="box five empty"></div>
+        <div class="box five empty"></div>
+        <div class="box five empty"></div>
+        <div class="box five empty"></div>
+
+    </div>
+
+    <div class="con eng-mal">
+        <div class="title">Capital Letter</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">A</div><div class="s-box">എ</div></div>
+        <div class="box five"><div class="m-box">B</div><div class="s-box">ബി</div></div>
+        <div class="box five"><div class="m-box">C</div><div class="s-box">സി</div></div>
+        <div class="box five"><div class="m-box">D</div><div class="s-box">ഡി</div></div>
+        <div class="box five"><div class="m-box">E</div><div class="s-box">ഇ</div></div>
+        <!-- row2 -->
+        <div class="box five"><div class="m-box">F</div><div class="s-box">എഫ്</div></div>
+        <div class="box five"><div class="m-box">G</div><div class="s-box">ജി</div></div>
+        <div class="box five"><div class="m-box">H</div><div class="s-box">എച്ച്</div></div>
+        <div class="box five"><div class="m-box">I</div><div class="s-box">ഐ</div></div>
+        <div class="box five"><div class="m-box">J</div><div class="s-box">ജെ</div></div>
+        <!-- row3 -->
+        <div class="box five"><div class="m-box">K</div><div class="s-box">കെ</div></div>
+        <div class="box five"><div class="m-box">L</div><div class="s-box">എൽ</div></div>
+        <div class="box five"><div class="m-box">M</div><div class="s-box">എം</div></div>
+        <div class="box five"><div class="m-box">N</div><div class="s-box">എൻ</div></div>
+        <div class="box five"><div class="m-box">O</div><div class="s-box">ഒ</div></div>
+        <!-- row4 -->
+        <div class="box five"><div class="m-box">P</div><div class="s-box">പി</div></div>
+        <div class="box five"><div class="m-box">Q</div><div class="s-box">ക്യു</div></div>
+        <div class="box five"><div class="m-box">R</div><div class="s-box">ആർ</div></div>
+        <div class="box five"><div class="m-box">S</div><div class="s-box">എസ്</div></div>
+        <div class="box five"><div class="m-box">T</div><div class="s-box">ടി</div></div>
+        <!-- row5 -->
+        <div class="box five"><div class="m-box">U</div><div class="s-box">യു</div></div>
+        <div class="box five"><div class="m-box">V</div><div class="s-box">വി</div></div>
+        <div class="box five"><div class="m-box">W</div><div class="s-box">ഡബ്ല്യു</div></div>
+        <div class="box five"><div class="m-box">X</div><div class="s-box">എക്സ്</div></div>
+        <div class="box five"><div class="m-box">Y</div><div class="s-box">വൈ</div></div>
+        <!-- row6 -->
+        <div class="box five"><div class="m-box">Z</div><div class="s-box">ഇസെഡ്</div></div>
+        <div class="box five empty"></div>
+        <div class="box five empty"></div>
+        <div class="box five empty"></div>
+        <div class="box five empty"></div>
+
+
+        <div class="title">Small Letter</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">a</div><div class="s-box">എ</div></div>
+        <div class="box five"><div class="m-box">b</div><div class="s-box">ബി</div></div>
+        <div class="box five"><div class="m-box">c</div><div class="s-box">സി</div></div>
+        <div class="box five"><div class="m-box">d</div><div class="s-box">ഡി</div></div>
+        <div class="box five"><div class="m-box">e</div><div class="s-box">ഇ</div></div>
+        <!-- row2 -->
+        <div class="box five"><div class="m-box">f</div><div class="s-box">എഫ്</div></div>
+        <div class="box five"><div class="m-box">g</div><div class="s-box">ജി</div></div>
+        <div class="box five"><div class="m-box">h</div><div class="s-box">എച്ച്</div></div>
+        <div class="box five"><div class="m-box">i</div><div class="s-box">ഐ</div></div>
+        <div class="box five"><div class="m-box">j</div><div class="s-box">ജെ</div></div>
+        <!-- row3 -->
+        <div class="box five"><div class="m-box">k</div><div class="s-box">കെ</div></div>
+        <div class="box five"><div class="m-box">l</div><div class="s-box">എൽ</div></div>
+        <div class="box five"><div class="m-box">m</div><div class="s-box">എം</div></div>
+        <div class="box five"><div class="m-box">n</div><div class="s-box">എൻ</div></div>
+        <div class="box five"><div class="m-box">o</div><div class="s-box">ഒ</div></div>
+        <!-- row4 -->
+        <div class="box five"><div class="m-box">p</div><div class="s-box">പി</div></div>
+        <div class="box five"><div class="m-box">q</div><div class="s-box">ക്യു</div></div>
+        <div class="box five"><div class="m-box">r</div><div class="s-box">ആർ</div></div>
+        <div class="box five"><div class="m-box">s</div><div class="s-box">എസ്</div></div>
+        <div class="box five"><div class="m-box">t</div><div class="s-box">ടി</div></div>
+        <!-- row5 -->
+        <div class="box five"><div class="m-box">u</div><div class="s-box">യു</div></div>
+        <div class="box five"><div class="m-box">v</div><div class="s-box">വി</div></div>
+        <div class="box five"><div class="m-box">w</div><div class="s-box">ഡബ്ല്യു</div></div>
+        <div class="box five"><div class="m-box">x</div><div class="s-box">എക്സ്</div></div>
+        <div class="box five"><div class="m-box">y</div><div class="s-box">വൈ</div></div>
+        <!-- row6 -->
+        <div class="box five"><div class="m-box">z</div><div class="s-box">ഇസെഡ്</div></div>
+        <div class="box five empty"></div>
+        <div class="box five empty"></div>
+        <div class="box five empty"></div>
+        <div class="box five empty"></div>
+
+    </div>
+
+    <!-- mal -->
+    <div class="con mal-eng">
+        <div class="title">Hindi Consonants</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">ക</div><div class="s-box">ka</div></div>
+        <div class="box five"><div class="m-box">ഖ</div><div class="s-box">kha</div></div>
+        <div class="box five"><div class="m-box">ഗ</div><div class="s-box">ga</div></div>
+        <div class="box five"><div class="m-box">ഘ</div><div class="s-box">gha</div></div>
+        <div class="box five"><div class="m-box">ങ</div><div class="s-box">nga</div></div>
+        <!-- row2 -->
+        <div class="box five"><div class="m-box">ച</div><div class="s-box">ca</div></div>
+        <div class="box five"><div class="m-box">ഛ</div><div class="s-box">cha</div></div>
+        <div class="box five"><div class="m-box">ജ</div><div class="s-box">ja</div></div>
+        <div class="box five"><div class="m-box">ഝ</div><div class="s-box">jha</div></div>
+        <div class="box five"><div class="m-box">ഞ</div><div class="s-box">nya</div></div>
+        <!-- row3 -->
+        <div class="box five"><div class="m-box">ട</div><div class="s-box">ta</div></div>
+        <div class="box five"><div class="m-box">ഠ</div><div class="s-box">tha</div></div>
+        <div class="box five"><div class="m-box">ഡ</div><div class="s-box">da</div></div>
+        <div class="box five"><div class="m-box">ഢ</div><div class="s-box">dha</div></div>
+        <div class="box five"><div class="m-box">ണ</div><div class="s-box">n</div></div>
+        <!-- row4 -->
+        <div class="box five"><div class="m-box">ത</div><div class="s-box">t</div></div>
+        <div class="box five"><div class="m-box">ഥ</div><div class="s-box">tha</div></div>
+        <div class="box five"><div class="m-box">ദ</div><div class="s-box">da</div></div>
+        <div class="box five"><div class="m-box">ധ</div><div class="s-box">dha</div></div>
+        <div class="box five"><div class="m-box">ന</div><div class="s-box">na</div></div>
+        <!-- row5 -->
+        <div class="box five"><div class="m-box">പ</div><div class="s-box">pa</div></div>
+        <div class="box five"><div class="m-box">ഫ</div><div class="s-box">pha</div></div>
+        <div class="box five"><div class="m-box">ബ</div><div class="s-box">ba</div></div>
+        <div class="box five"><div class="m-box">ഭ</div><div class="s-box">bha</div></div>
+        <div class="box five"><div class="m-box">മ</div><div class="s-box">ma</div></div>
+        <!-- row6 -->
+        <div class="box five"><div class="m-box">യ</div><div class="s-box">ya</div></div>
+        <div class="box five"><div class="m-box">ര</div><div class="s-box">ra</div></div>
+        <div class="box five"><div class="m-box">ല</div><div class="s-box">la</div></div>
+        <div class="box five"><div class="m-box">വ</div><div class="s-box">va</div></div>
+        <div class="box five empty"></div>
+        <!-- row7 -->
+        <div class="box five"><div class="m-box">ശ</div><div class="s-box">sha</div></div>
+        <div class="box five"><div class="m-box">ഷ</div><div class="s-box">shha</div></div>
+        <div class="box five"><div class="m-box">സ</div><div class="s-box">sa</div></div>
+        <div class="box five"><div class="m-box">ഹ</div><div class="s-box">ha</div></div>
+        <div class="box five empty"></div>
+
+
+        <div class="title">Independent Vowels</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">അ</div><div class="s-box">a</div></div>
+        <div class="box five"><div class="m-box">ആ</div><div class="s-box">aa</div></div>
+        <div class="box five"><div class="m-box">ഇ</div><div class="s-box">e</div></div>
+        <div class="box five"><div class="m-box">ഈ</div><div class="s-box">i</div></div>
+        <div class="box five"><div class="m-box">ഉ</div><div class="s-box">u</div></div>
+        <div class="box five"><div class="m-box">ഊ</div><div class="s-box">uu</div></div>
+        <div class="box five"><div class="m-box">ഋ</div><div class="s-box">r</div></div>
+        <div class="box five"><div class="m-box">എ</div><div class="s-box">a</div></div>
+        <div class="box five"><div class="m-box">ഏ</div><div class="s-box">ae</div></div>
+        <div class="box five"><div class="m-box">ഒ</div><div class="s-box">o</div></div>
+        <div class="box five"><div class="m-box">ഓ</div><div class="s-box">ao</div></div>
+        <div class="box five"><div class="m-box">ഐ</div><div class="s-box">ai</div></div>
+        <div class="box five"><div class="m-box">ഔ</div><div class="s-box">au</div></div>
+
+
+        <div class="title">Dependent Vowels</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">ാ</div><div class="s-box">aa</div></div>
+        <div class="box five"><div class="m-box">ി</div><div class="s-box">i</div></div>
+        <div class="box five"><div class="m-box">ീ</div><div class="s-box">ii</div></div>
+        <div class="box five"><div class="m-box">ു</div><div class="s-box">u</div></div>
+        <div class="box five"><div class="m-box">ൂ</div><div class="s-box">uu</div></div>
+        <div class="box five"><div class="m-box">ൃ</div><div class="s-box">r</div></div>
+        <div class="box five"><div class="m-box">െ</div><div class="s-box">e</div></div>
+        <div class="box five"><div class="m-box">േ</div><div class="s-box">ee</div></div>
+        <div class="box five"><div class="m-box">ൈ</div><div class="s-box">ai</div></div>
+        <div class="box five"><div class="m-box">ൊ</div><div class="s-box">o</div></div>
+        <div class="box five"><div class="m-box">ോ</div><div class="s-box">oo</div></div>
+        <div class="box five"><div class="m-box">ൌ</div><div class="s-box">au</div></div>
+
+    </div>
+
+    <div class="con mal-hin">
+        <div class="title">Hindi Consonants</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">ക</div><div class="s-box">क</div></div>
+        <div class="box five"><div class="m-box">ഖ</div><div class="s-box">ख</div></div>
+        <div class="box five"><div class="m-box">ഗ</div><div class="s-box">ग</div></div>
+        <div class="box five"><div class="m-box">ഘ</div><div class="s-box">घ</div></div>
+        <div class="box five"><div class="m-box">ങ</div><div class="s-box">ङ</div></div>
+        <!-- row2 -->
+        <div class="box five"><div class="m-box">ച</div><div class="s-box">च</div></div>
+        <div class="box five"><div class="m-box">ഛ</div><div class="s-box">छ</div></div>
+        <div class="box five"><div class="m-box">ജ</div><div class="s-box">ज</div></div>
+        <div class="box five"><div class="m-box">ഝ</div><div class="s-box">झ</div></div>
+        <div class="box five"><div class="m-box">ഞ</div><div class="s-box">ञ</div></div>
+        <!-- row3 -->
+        <div class="box five"><div class="m-box">ട</div><div class="s-box">ट</div></div>
+        <div class="box five"><div class="m-box">ഠ</div><div class="s-box">ठ</div></div>
+        <div class="box five"><div class="m-box">ഡ</div><div class="s-box">ड</div></div>
+        <div class="box five"><div class="m-box">ഢ</div><div class="s-box">ढ</div></div>
+        <div class="box five"><div class="m-box">ണ</div><div class="s-box">ण</div></div>
+        <!-- row4 -->
+        <div class="box five"><div class="m-box">ത</div><div class="s-box">त</div></div>
+        <div class="box five"><div class="m-box">ഥ</div><div class="s-box">थ</div></div>
+        <div class="box five"><div class="m-box">ദ</div><div class="s-box">द</div></div>
+        <div class="box five"><div class="m-box">ധ</div><div class="s-box">ध</div></div>
+        <div class="box five"><div class="m-box">ന</div><div class="s-box">न</div></div>
+        <!-- row5 -->
+        <div class="box five"><div class="m-box">പ</div><div class="s-box">प</div></div>
+        <div class="box five"><div class="m-box">ഫ</div><div class="s-box">फ</div></div>
+        <div class="box five"><div class="m-box">ബ</div><div class="s-box">ब</div></div>
+        <div class="box five"><div class="m-box">ഭ</div><div class="s-box">भ</div></div>
+        <div class="box five"><div class="m-box">മ</div><div class="s-box">म</div></div>
+        <!-- row6 -->
+        <div class="box five"><div class="m-box">യ</div><div class="s-box">य</div></div>
+        <div class="box five"><div class="m-box">ര</div><div class="s-box">र</div></div>
+        <div class="box five"><div class="m-box">ല</div><div class="s-box">ल</div></div>
+        <div class="box five"><div class="m-box">വ</div><div class="s-box">व</div></div>
+        <div class="box five empty"></div>
+        <!-- row7 -->
+        <div class="box five"><div class="m-box">ശ</div><div class="s-box">श</div></div>
+        <div class="box five"><div class="m-box">ഷ</div><div class="s-box">ष</div></div>
+        <div class="box five"><div class="m-box">സ</div><div class="s-box">स</div></div>
+        <div class="box five"><div class="m-box">ഹ</div><div class="s-box">ह</div></div>
+        <div class="box five empty"></div>
+
+
+        <div class="title">Independent Vowels</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">അ</div><div class="s-box">अ</div></div>
+        <div class="box five"><div class="m-box">ആ</div><div class="s-box">आ</div></div>
+        <div class="box five"><div class="m-box">ഇ</div><div class="s-box">इ</div></div>
+        <div class="box five"><div class="m-box">ഈ</div><div class="s-box">ई</div></div>
+        <div class="box five"><div class="m-box">ഉ</div><div class="s-box">उ</div></div>
+        <div class="box five"><div class="m-box">ഊ</div><div class="s-box">ऊ</div></div>
+        <div class="box five"><div class="m-box">ഋ</div><div class="s-box">आर</div></div>
+        <div class="box five"><div class="m-box">എ</div><div class="s-box">ए</div></div>
+        <div class="box five"><div class="m-box">ഏ</div><div class="s-box">ऐ</div></div>
+        <div class="box five"><div class="m-box">ഒ</div><div class="s-box">ओ</div></div>
+        <div class="box five"><div class="m-box">ഓ</div><div class="s-box">औ</div></div>
+        <div class="box five"><div class="m-box">ഐ</div><div class="s-box">आई</div></div>
+        <div class="box five"><div class="m-box">ഔ</div><div class="s-box">औ</div></div>
+
+
+        <div class="title">Dependent Vowels</div>
+        <!-- row1 -->
+        <div class="box five"><div class="m-box">ാ</div><div class="s-box">ा</div></div>
+        <div class="box five"><div class="m-box">ി</div><div class="s-box">ि</div></div>
+        <div class="box five"><div class="m-box">ീ</div><div class="s-box">ी</div></div>
+        <div class="box five"><div class="m-box">ു</div><div class="s-box">ु</div></div>
+        <div class="box five"><div class="m-box">ൂ</div><div class="s-box">ू</div></div>
+        <div class="box five"><div class="m-box">ൃ</div><div class="s-box">ृ</div></div>
+        <div class="box five"><div class="m-box">െ</div><div class="s-box">ॅ</div></div>
+        <div class="box five"><div class="m-box">േ</div><div class="s-box">ॆ</div></div>
+        <div class="box five"><div class="m-box">ൈ</div><div class="s-box">ै</div></div>
+        <div class="box five"><div class="m-box">ൊ</div><div class="s-box">ॉ</div></div>
+        <div class="box five"><div class="m-box">ോ</div><div class="s-box">oo</div></div>
+        <div class="box five"><div class="m-box">ൌ</div><div class="s-box">ौ</div></div>
+
+    </div>
+
+<script>
+    currentLang = localStorage.currentLang;
+    yourLang = localStorage.yourLang;
+    $("."+currentLang+"-"+yourLang).css({display:'flex'});
+</script>
+</body>
+</html>

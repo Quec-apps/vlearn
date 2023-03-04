@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../res/jquery-3.6.2.min.js"></script>
+    <title>result</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: berlin-bold;
+    src: url(../res/font/din_bold.ttf);
+}
+@font-face {
+    font-family: berlin-regular;
+    src: url(../res/font/din_normal.ttf);
+}
+body {
+    width: 100vw;
+    overflow: hidden;
+    margin: 0;
+    font-family: berlin-bold;
+    user-select: none;
+    color: #6f6f6f;
+    
+}
+
+.content {
+    width: 100%;
+    height: 90vh;
+    position: relative;
+    z-index: 1;
+}
+.img-bg {
+    display: flex; justify-content: center;
+    padding-top: 5vh;
+}
+.char-img {
+    width: 60vw; max-width: 200px;
+    height: 60vw; max-height: 200px;
+    margin: 0 auto;
+}
+
+.btm {
+    height: 10vh;
+    display: flex; justify-content: center; align-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+.green-btn {
+    width: 90vw; max-width: 500px;
+    height: 60px;
+    font-size: larger;
+    font-family: berlin-bold;
+    background-color: #01a80c;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 1px 3px #01620b;
+    display: flex; justify-content: center; align-items: center;
+} .green-btn:active {
+    box-shadow: 0px 0px #012201 !important;
+    transform: translate(1px, 3px);
+} 
+.crct-ans-bg {
+    padding-top: 3vh;
+}
+.crct-ans-txt, .crct-ans-txt2 {
+    text-align: center;
+    font-size: x-large;
+    color: #49c0f8;
+} .crct-ans-txt2 {
+    font-size: xx-large;
+    color: #ffc801;
+    display: flex; justify-content: center;
+}
+#crct-txt {
+    transform: translateX(50%);
+    opacity: 0;
+    transition: all 400ms ease-in-out;
+} #total-txt {
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: all 400ms ease-in-out;
+}
+.change-bg {
+    width: 100%;
+    text-align: center;
+    font-size: x-large;
+    color: #01a80c;
+    display: none;
+}
+.confetti {
+    width: 100vw;
+    height: 100vh;
+    position: fixed; top: 0; left: 0;
+    z-index: 0;
+    display: none;
+}
+</style>
+</head>
+<body>
+<script>
+if (localStorage.darkMode != null) $("body").css({backgroundColor:'black'});
+else $("body").css({backgroundColor:'white'});
+</script>
+<canvas class="confetti" id="canvas"></canvas>
+
+<div class="content">
+    <div class="img-bg">
+        <img src="../res/image/character/cow.svg" class="char-img">
+    </div>
+    <div class="crct-ans-bg">
+        <div class="crct-ans-txt">Correct Answers</div>
+        <div class="crct-ans-txt2"><div id="crct-txt"></div>/<div id="total-txt"></div></div>
+    </div>
+    <div class="crct-ans-bg">
+        <div class="crct-ans-txt">Level Completed</div>
+        <div class="crct-ans-txt2" id="percent">0%</div>
+        <div class="change-bg improve-bg">You improved <span id="improve">0</span>%</div>
+        <div class="change-bg worse-bg">You are <span id="worse">0</span>% worse</div>
+    </div>
+    <div class="crct-ans-bg">
+        <div class="crct-ans-txt xp-txt" style="color: green;"></div>
+        <div class="crct-ans-txt xp" style="color: #ff6600;"></div>
+    </div>
+    <div class="crct-ans-bg">
+        <div class="crct-ans-txt prg_info" style="color: green;"></div>
+    </div>
+</div>
+<div class="btm">
+    <div class="green-btn check-btn">CONTINUE</div>
+</div>
+<script src="../res/confetti.js"></script>
+<script>
+crctAns = parseInt(localStorage.crctAns);
+totalAns = localStorage.fullTotalAns;
+currentLang = localStorage.currentLang;
+yourLang = localStorage.yourLang;
+openedLevel = localStorage.openedLevel;
+
+xpDict = JSON.parse(localStorage.xpDict);
+xp = parseInt(xpDict[currentLang+"-"+yourLang]);
+xp+=parseInt(localStorage.addedXp);
+xpDict[currentLang+"-"+yourLang] = xp;
+localStorage.setItem("xpDict", JSON.stringify(xpDict));
+$(".xp-txt").text("+"+localStorage.addedXp+" XP");
+$(".xp").text(xp+" XP");
+
+crctDict = JSON.parse(localStorage.getItem(currentLang+"-"+yourLang+"-crct"));
+totalDict = JSON.parse(localStorage.getItem(currentLang+"-"+yourLang+"-total"));
+console.log("Geting1");
+console.log("crctDict",crctDict[openedLevel]);
+openedSkipedLevel = false;
+if (isNaN(crctDict[openedLevel])) {
+    // openedSkipedLevel = true;
+    crctDict[openedLevel] = crctAns;
+    totalDict[openedLevel] = totalAns;
+    console.log("crctDict[openedLevel]",crctDict[openedLevel])
+    console.log("totalDict[openedLevel]",totalDict[openedLevel])
+}
+console.log("crctDict2",crctDict[openedLevel]);
+
+if (localStorage.quiz != null) {
+    //jump level is finished
+    if (localStorage.quizWon == "true") {
+        console.log("You are progressed to level", localStorage.quiz);
+        crctDict[localStorage.quiz] = crctAns;
+        totalDict[localStorage.quiz] = parseInt(localStorage.fullTotalAns);
+        localStorage.setItem(currentLang+"-"+yourLang+"-total", JSON.stringify(totalDict));
+        localStorage.setItem(currentLang+"-"+yourLang+"-crct", JSON.stringify(crctDict));
+        console.log("Saving2");
+        percent = 100;
+        $(".confetti").fadeIn(0);
+        appendAnim(percent);
+        $(".prg_info").css({color:'#01a80c'});
+        $(".prg_info").html("You are progressed to level "+localStorage.quiz);
+    } else {
+        percent = ((crctAns/totalAns)*100).toFixed(0);
+        if (percent == 100) $(".confetti").fadeIn(0);
+        appendAnim(percent);
+        $(".prg_info").css({color:'#b91111'});
+        $(".prg_info").html("You failed to win");
+    }
+}
+else if (localStorage.openedPreviousLevel == null) {
+//first time winning this lesson
+
+_totalAns = totalDict[openedLevel];
+console.log(_totalAns);
+_totalAns+=parseInt(totalAns);
+totalDict[openedLevel] = _totalAns;
+localStorage.setItem(currentLang+"-"+yourLang+"-total", JSON.stringify(totalDict));
+localStorage.setItem(currentLang+"-"+yourLang+"-crct", JSON.stringify(crctDict));
+console.log("Saving3");
+
+if (crctDict[openedLevel] == null) {
+    _crctAns = 0;
+} else {
+    _crctAns = parseInt(crctDict[openedLevel]);
+}
+_crctAns+=parseInt(crctAns);
+crctDict[openedLevel] = _crctAns;
+console.log(_crctAns);
+localStorage.setItem(currentLang+"-"+yourLang+"-crct", JSON.stringify(crctDict));
+localStorage.setItem(currentLang+"-"+yourLang+"-total", JSON.stringify(totalDict));
+console.log("Saving4");
+
+percent = ((crctAns/totalAns)*100).toFixed(0);
+if (percent == 100) $(".confetti").fadeIn(0);
+
+appendAnim(percent);
+console.log("TotalDictn is",totalDict);
+console.log("CrctDict is",crctDict);
+} else {
+//already completed this level before
+previousCrctAns = crctDict[openedLevel];
+totalAns = localStorage.fullTotalAns;
+_crctAns = parseInt(localStorage.crctAns);
+localStorage.setItem(currentLang+"-"+yourLang+"-crct", JSON.stringify(crctDict));
+localStorage.setItem(currentLang+"-"+yourLang+"-total", JSON.stringify(totalDict));
+console.log("Saving5");
+
+oldPercent = parseInt(((previousCrctAns/totalAns)*100).toFixed(0));
+newPercent = parseInt(((_crctAns/totalAns)*100).toFixed(0));
+console.log(oldPercent);
+console.log(newPercent);
+appendAnim(newPercent);
+
+if (newPercent > oldPercent) {
+    console.log("You improved");
+    $(".confetti").fadeIn(0);
+    $("#improve").text(newPercent - oldPercent);
+    $(".improve-bg").css({color:'#01a80c'});
+    $(".improve-bg").fadeIn();
+    crctDict[openedLevel] = _crctAns;
+    totalDict[openedLevel] = totalAns;
+    localStorage.setItem(currentLang+"-"+yourLang+"-crct", JSON.stringify(crctDict));
+    localStorage.setItem(currentLang+"-"+yourLang+"-total", JSON.stringify(totalDict));
+    console.log("Saving6");
+    localStorage.canSync++;
+} else if (newPercent < oldPercent) {
+    console.log("No improve");
+    $("#worse").text(oldPercent - newPercent);
+    $(".worse-bg").css({color:'#b91111'});
+    $(".worse-bg").fadeIn();
+}
+}
+
+$("#crct-txt").text(crctAns);
+$("#total-txt").text(totalAns);
+setTimeout(() => { $("#crct-txt, #total-txt").css({transform:'translateX(0)', opacity:'1'}); }, 400);
+
+function appendAnim(percent) {
+    console.log(crctDict,totalDict);
+    _tmp = 0;
+    console.log(percent)
+    intrvl = setInterval(() => {
+        console.log("Caleed");
+        _tmp+= parseFloat(100/percent);
+        $("#percent").text(_tmp.toFixed(0)+"%");
+        if (_tmp >= percent) {
+            clearInterval(intrvl);
+            $("#percent").text(percent+"%");
+        }
+    }, (1/percent)*1500);
+    console.log((100/percent).toFixed(0));
+}
+
+$(".check-btn").click(function() {
+setTimeout(() => {
+    window.history.back();
+}, 400);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../res/jquery-3.6.2.min.js"></script>
+    <title>Question</title>
+    <style>
+        @font-face {
+            font-family: berlin-bold;
+            src: url(../res/font/din_bold.ttf);
+        }
+
+        @font-face {
+            font-family: berlin-regular;
+            src: url(../res/font/din_normal.ttf);
+        }
+
+        body {
+            width: 100vw;
+            overflow: hidden;
+            margin: 0;
+            font-family: berlin-bold;
+            user-select: none;
+            color: #6f6f6f;
+        }
+
+        .iframe-bg {
+            max-width: 100vw;
+            display: flex;
+            justify-content: center;
+        }
+
+        #_iframe {
+            max-width: 500px;
+        }
+
+        .top {
+            width: 100vw;
+            height: 5vh;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .close-img {
+            width: 25px;
+            height: 25px;
+        }
+
+        .fill-bg {
+            width: 80vw;
+            height: 2vh;
+            border-radius: 10px;
+            background-color: #6f6f6f;
+        }
+
+        .fill {
+            width: 0%;
+            height: 100%;
+            border-radius: 10px;
+            background-image: linear-gradient(gold, #ac9511);
+            transition: all 0.8s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        if (localStorage.darkMode != null) $("body").css({ backgroundColor: 'black' });
+        else $("body").css({ backgroundColor: 'white' });
+
+        currentLang = localStorage.currentLang;
+        yourLang = localStorage.yourLang;
+        langDict = JSON.parse(localStorage.langDict);
+        xpDict = localStorage.xpDict;
+        xp = xpDict[currentLang+"-"+yourLang];
+        currentLevel = langDict[currentLang + "-" + yourLang]
+        openedLevel = parseInt(localStorage.openedLevel);
+        lessonDict = JSON.parse(localStorage.lessonDict);
+        currentLesson = JSON.parse(lessonDict[currentLang + "-" + yourLang]);
+        currentLang = localStorage.currentLang; yourLang = localStorage.yourLang;
+        openedPreviousLevel = false;
+        console.log("currentLevel", currentLevel)
+        console.log("openedLevel", openedLevel);
+        if (currentLevel != openedLevel) {
+            //user opened previous level
+            currentLesson = 1;
+            currentLevel = parseInt(openedLevel);
+            openedPreviousLevel = true;
+            localStorage.openedPreviousLevel = 1;
+            console.log("Opened previous level");
+        } else { localStorage.removeItem("openedPreviousLevel"); }
+        $("body").prepend(`<script src="../res/var/${currentLang}/${currentLang}-${yourLang}/l${currentLevel}.js" id="_script">`);
+    </script>
+    <div class="top">
+        <img src="../res/image/close.svg" class="close-img">
+        <div class="fill-bg">
+            <div class="fill"></div>
+        </div>
+    </div>
+    <div class="iframe-bg">
+        <iframe src="" id="_iframe" style="width: 100vw; height: 94vh;" frameborder="0"></iframe>
+    </div>
+    <script>
+        coloDict = JSON.parse(localStorage.colorDict);
+        green = coloDict["green"];
+        darkGreen = coloDict["darkGreen"];
+        transparentGreen = coloDict["transparentGreen"];
+        red = coloDict["red"];
+        darkRed = coloDict["darkRed"];
+        transparentRed = coloDict["transparentRed"];
+
+        crctDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-crct"));
+        totalDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-total"));
+
+        localStorage.fullTotalAns = 0;
+
+        function checkAppendStr() {
+            if (currentLesson == 1) appendStr = "a"
+            if (currentLesson == 2) appendStr = "b"
+            if (currentLesson == 3) appendStr = "c"
+            if (currentLesson == 4) appendStr = "d"
+
+            totalLesson = window[appendStr];
+            console.log("TotalLesson is", totalLesson);
+        }
+        checkAppendStr();
+
+        chapter = 1;
+
+        crctAns = 0;
+        localStorage.totalLesson = totalLesson;
+        //wrongAns = 0; 
+
+        function fillBar() {
+            fillWidth = (chapter / totalLesson) * 100;
+            $(".fill").css({ width: fillWidth + '%' });
+        } fillBar();
+
+        console.log(window[appendStr + "-type" + chapter])
+        // $("#_iframe").attr("src", window[appendStr+"-type"+chapter] +".html");
+        var frame = $('#_iframe')[0];
+        frame.contentWindow.location.replace(window[appendStr + "-type" + chapter] + ".html");
+        console.log(window[appendStr + "-type" + chapter] + ".html")
+
+        lessonCount = JSON.parse(localStorage.lessonCount);
+
+        function next() {
+            localStorage.crctAns = crctAns;
+            localStorage.fullTotalAns++;
+            if (chapter < totalLesson) {
+                chapter++;
+                var frame = $('#_iframe')[0];
+                frame.contentWindow.location.replace(window[appendStr + "-type" + chapter] + ".html");
+                //$("iframe").attr("src", window[appendStr+"-type"+chapter] +".html");
+                fillBar();
+            } else {
+                console.log("Chapter completed");
+                console.log("crctAns",crctAns);
+                console.log("currentLevel",currentLevel);
+                console.log("totalLesson",totalLesson);
+                console.log("totalDict[currentLevel]",totalDict[currentLevel]);
+                if (localStorage.quiz != null) { //jump level is running
+                    
+                    if (crctAns == totalLesson) {
+                        console.log("crctAns", crctAns);
+                        console.log("totalDict[currentLevel]", totalDict[currentLevel]);
+                        console.log("Progressed to new level")
+                        langDict[currentLang + "-" + yourLang] = parseInt(localStorage.quiz);
+                        lessonDict[currentLang + "-" + yourLang] = 2;
+                        localStorage.setItem("lessonDict", JSON.stringify(lessonDict));
+                        localStorage.setItem("langDict", JSON.stringify(langDict));
+                        localStorage.quizWon = "true";
+                        localStorage.canSync += 2;
+                        location.replace("result.html");
+                        console.log("CrctAns is", crctAns)
+                        console.log("totalAns is", totalDict[currentLevel])
+                        localStorage.addedXp = 10;
+                    } else {
+                        //failed to pass
+                        localStorage.quizWon = "false";
+                        location.replace("result.html");
+                        localStorage.addedXp = 0;
+                    }
+                    return;
+                }
+                //below code only work if localStorage.quiz not exist
+                if (currentLesson < lessonCount[currentLevel]) {
+                    if (!openedPreviousLevel) {
+                        currentLesson++; localStorage.canSync++;
+
+                        //progress lesson and store on server
+                        lessonDict[currentLang + "-" + yourLang] = currentLesson;
+                        console.log(lessonDict[currentLang + "-" + yourLang]);
+                        localStorage.setItem("lessonDict", JSON.stringify(lessonDict));
+                        console.log("Lesson increased");
+                        location.replace("result.html");
+                        localStorage.addedXp = crctAns;
+                    } else {
+                        //user playing previous level
+                        currentLesson++; chapter = 1;
+                        checkAppendStr();
+                        console.log("OPenedPreviousLevel is", openedPreviousLevel)
+                        var frame = $('#_iframe')[0];
+                        frame.contentWindow.location.replace(window[appendStr + "-type" + chapter] + ".html");
+                        //$("#_iframe").attr("src", window[appendStr+"-type"+chapter] +".html");
+                        console.log("Iframe loaded");
+                        fillBar();
+                    }
+                } else {
+                    if (!openedPreviousLevel) {
+                        //unlock new level and store on server
+                        currentLevel++; localStorage.canSync += 2;
+                        langDict[currentLang + "-" + yourLang] = currentLevel;
+                        crctDict[currentLevel] = 0; localStorage.setItem(currentLang + "-" + yourLang + "-crct", JSON.stringify(crctDict));
+                        totalDict[currentLevel] = 0; localStorage.setItem(currentLang + "-" + yourLang + "-total", JSON.stringify(totalDict));
+                        localStorage.setItem("langDict", JSON.stringify(langDict));
+                        currentLesson = 1;
+                        lessonDict[currentLang + "-" + yourLang] = currentLesson;
+                        localStorage.setItem("lessonDict", JSON.stringify(lessonDict));
+                        console.log("Level increased");
+                        localStorage.addedXp = 5;
+                    }
+                    location.replace("result.html");
+                }
+            }
+        }
+
+        $(".close-img").click(function () {
+            window.history.back();
+        });
+    </script>
+</body>
+
+</html>

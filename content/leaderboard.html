@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vLearn - LeaderBoard</title>
+    <script src="res/jquery-3.6.2.min.js"></script>
+    <style>
+        @font-face {
+            font-family: berlin-bold;
+            src: url(res/font/din_bold.ttf);
+        }
+
+        @font-face {
+            font-family: berlin-regular;
+            src: url(res/font/din_normal.ttf);
+        }
+
+        body,
+        html {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            font-family: berlin-bold;
+            user-select: none;
+            color: #6f6f6f;
+            transition: all 0.4s ease-in;
+        }
+
+        .top {
+            width: 100vw;
+            height: 10vh;
+            background-color: #ededed30;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-txt {
+            font-size: large;
+            padding-left: 2vw;
+        }
+
+        .lang {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .lang-txt {
+            font-size: larger;
+        }
+
+        .switch {
+            width: 100%;
+            height: 10vh;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: center;
+        }
+
+        .content {
+            width: 100%;
+            height: 80vh;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+
+        .top-img-bg {
+            height: 30vh;
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .img-card-bg {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 0px 0px 0px 6px black, 0px 0px 0px 6px black;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: small;
+        }
+
+        .card-txt {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: small;
+            position: absolute;
+            top: 85%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            background-color: black;
+            color: white;
+        }
+
+        .card1 {
+            width: 150px;
+            height: 150px;
+            box-shadow: 0px 0px 0px 6px #ea9c0a, 0px 0px 0px 6px #ea9c0a;
+            animation: card1 0.4s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        @keyframes card1 {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .card1 .card-txt {
+            top: 90%;
+            background-color: #ea9c0a;
+        }
+
+        .card2 {
+            box-shadow: 0px 0px 0px 6px #018ad8, 0px 0px 0px 6px #018ad8;
+            animation: card2 0.6s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        @keyframes card2 {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .card2 .card-txt {
+            background-color: #018ad8;
+        }
+
+        .card3 {
+            box-shadow: 0px 0px 0px 6px #3d9b3b, 0px 0px 0px 6px #3d9b3b;
+            animation: card2 0.6s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        .card3 .card-txt {
+            background-color: #3d9b3b;
+        }
+
+        .crown-img {
+            width: 70px;
+            position: absolute;
+            top: -48%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .list-bg {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .list-ct {
+            width: 80vw;
+            max-width: 600px;
+            padding: 12px 0;
+            border-radius: 10px;
+            border: solid 4px #6f6f6f;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: medium;
+        }
+
+        .xp {
+            color: #ff6600;
+        }
+
+        .ct1 {
+            animation: ct1 0.4s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        @keyframes ct1 {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0%);
+                opacity: 1;
+            }
+        }
+
+        .seperator {
+            width: 80vw;
+            margin-bottom: 10px;
+            height: 2px;
+            border-radius: 10px;
+            background-color: #6f6f6f;
+        }
+
+        .ct2 {
+            animation: ct1 0.6s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        .ct3 {
+            animation: ct1 0.8s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        .ct4 {
+            animation: ct1 1s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        .ct5 {
+            animation: ct1 1.2s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        .ct6 {
+            animation: ct1 1.4s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        .ct7 {
+            animation: ct1 1.6s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        .ct8 {
+            animation: ct1 1.8s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        .ct9 {
+            animation: ct1 2s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        .ct10 {
+            animation: ct1 2.2s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        .ct11 {
+            animation: ct1 2.4s cubic-bezier(0.65, 0.05, 0.36, 1) 1;
+        }
+
+        .num {
+            width: 20%;
+            text-align: center;
+        }
+
+        .name {
+            width: 65%;
+            text-align: center;
+        }
+
+        .xp {
+            width: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function checkMode() {
+            if (localStorage.darkMode == null) $('body').css({ backgroundColor: 'white' });
+            else $('body').css({ backgroundColor: 'black' });
+        }
+        checkMode();
+    </script>
+    <div class="top">
+        <div class="top-txt">LeaderBoard</div>
+    </div>
+    <style>
+        .xp-bg,
+        .pts-bg {
+            width: 48%;
+            text-align: center;
+            padding: 1.2vh 0;
+            font-size: larger;
+        }
+
+        .xp-bg:active,
+        .pts-bg:active {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+        }
+
+        .bar-bg {
+            width: 100%;
+            height: .5vh;
+        }
+
+        .bar {
+            width: 50%;
+            height: 100%;
+            border-radius: 10px;
+            background-color: green;
+            transition: all .2s ease-in-out;
+        }
+    </style>
+    <div class="switch">
+        <div class="xp-bg">This course</div>
+        <div class="pts-bg">Total Points</div>
+        <div class="bar-bg">
+            <div class="bar"></div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="top-img-bg">
+            <div class="img-card-bg card3">
+                <div class="card-txt">3</div>
+                <div class="name-txt _name3"></div>
+            </div>
+            <div class="img-card-bg card1">
+                <img src="res/image/crown.svg" class="crown-img">
+                <div class="name-txt _name1"></div>
+                <div class="card-txt">1</div>
+            </div>
+            <div class="img-card-bg card2">
+                <div class="name-txt _name2"><br></div>
+                <div class="card-txt">2</div>
+            </div>
+        </div>
+
+        <div class="lang">
+            <div class="lang-txt"></div>
+        </div>
+
+        <div class="list-bg">
+            <div class="list-ct ct1" style="background-color: #ea9c0a; border-color: #ea9c0a; color: #411a00;">
+                <div class="num">1.</div>
+                <div class="name name1"></div>
+                <div class="xp xp1" style="color: #411a00;"></div>
+            </div>
+            <div class="list-ct ct2" style="background-color: #018ad8; border-color: #018ad8; color: #411a00;">
+                <div class="num">2.</div>
+                <div class="name name2"></div>
+                <div class="xp xp2" style="color: #411a00;"></div>
+            </div>
+            <div class="list-ct ct3" style="background-color: #3d9b3b; border-color: #3d9b3b; color: #411a00;">
+                <div class="num">3.</div>
+                <div class="name name3"></div>
+                <div class="xp xp3" style="color: #411a00;"></div>
+            </div>
+
+            <div class="list-ct ct4">
+                <div class="num">4.</div>
+                <div class="name name4"></div>
+                <div class="xp xp4"></div>
+            </div>
+            <div class="list-ct ct5">
+                <div class="num">5.</div>
+                <div class="name name5"></div>
+                <div class="xp xp5"></div>
+            </div>
+            <div class="list-ct ct6">
+                <div class="num">6.</div>
+                <div class="name name6"></div>
+                <div class="xp xp6"></div>
+            </div>
+            <div class="list-ct ct7">
+                <div class="num">7.</div>
+                <div class="name name7"></div>
+                <div class="xp xp7"></div>
+            </div>
+            <div class="list-ct ct8">
+                <div class="num">8.</div>
+                <div class="name name8"></div>
+                <div class="xp xp8"></div>
+            </div>
+            <div class="list-ct ct9">
+                <div class="num">9.</div>
+                <div class="name name9"></div>
+                <div class="xp xp9"></div>
+            </div>
+            <div class="list-ct ct10">
+                <div class="num">10.</div>
+                <div class="name name10"></div>
+                <div class="xp xp10"></div>
+            </div>
+            <div class="seperator"></div>
+            <div class="list-ct ct11" style="background-color: #ea9c0a; border-color: #ea9c0a; color: #411a00;">
+                <div class="num plyr-num">calculating...</div>
+                <div class="name">You</div>
+                <div class="xp plyr-xp">calculating...</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        currentLang = localStorage.currentLang;
+        yourLang = localStorage.yourLang;
+
+        xpDict = JSON.parse(localStorage.xpDict);
+        xp = xpDict[currentLang + "-" + yourLang];
+
+        _mode = "XP";
+
+        function langTxt(index) {
+            if (index == "eng") return "English";
+            if (index == "hin") return "Hindi";
+            if (index == "tam") return "Tamil";
+            if (index == "mal") return "Malayalam";
+        }
+
+        // function RandNum(min, max) { // min and max included 
+        //     return Math.floor(Math.random() * (max - min + 1) + min)
+        // }
+
+        function numTxt() {
+            if (xp < 10) {
+                return "250 - 300";
+            } else if (xp < 50) {
+                return "200 - 250";
+            } else if (xp < 100) {
+                return "150 - 200";
+            } else if (xp < 200) {
+                return "100 - 150";
+            }
+        }
+
+        function _txtRet(_tmp) {
+            if (_tmp == "xp") return currentLang;
+            else return "pts";
+        }
+
+        async function _append(_type) {
+            $(".plyr-num").text("Calculating...");
+            $(".lang-txt").text(`Top ${langTxt(currentLang)} learners`);
+            $(".plyr-xp").text(xp + " "+_mode);
+            setTimeout(() => {
+                $(".plyr-num").text(numTxt());
+            }, 5000);
+
+            try {
+                let text_data = await downloadFile();
+            }
+            catch (e) {
+                // alert(e.message);
+            }
+
+            async function downloadFile() {
+                let response = await fetch(`/${_txtRet(_type)}.txt`);
+                console.log(response);
+
+                if (response.status != 200) {
+                    //throw new Error("Server Error");
+                    console.log("Error Occured");
+                    alert("Something went wrong!");
+                }
+
+                // read response stream as text
+                let text_data = await response.text();
+                var line = text_data.split("\r\n")
+                console.log(line)
+                for (i = 0; i <= line.length; i++) {
+                    iterLine = line[i].split(",")
+                    console.log(iterLine[0]);
+                    $(".name" + (i + 1)).text(iterLine[0] + "*****@gmail.com");
+                    $(".xp" + (i + 1)).text(iterLine[1] + " " + _mode);
+
+                    if (i == 0 || i == 1 || i == 2) {
+                        $("._name" + (i + 1)).text(line[i].slice(0, 6) + "...");
+                    }
+                }
+
+                return text_data;
+            }
+        }
+        _append("xp");
+
+
+        xpShowing = true;
+        $(".xp-bg").click(function () {
+            if (xpShowing)
+                return;
+            xpShowing = true;
+            _mode = "XP";
+            $(".lang").css({visibility:'visible'});
+            $(".content").scrollTop(0);
+            $(".bar").css({ transform: "translateX(0)" });
+            _append("xp");
+        });
+        $(".pts-bg").click(function () {
+            if (!xpShowing)
+                return;
+            xpShowing = false;
+            _mode = "Pts";
+            $(".lang").css({visibility:'hidden'});
+            $(".content").scrollTop(0);
+            $(".bar").css({ transform: "translateX(100%)" });
+            _append("pts");
+        });
+    </script>
+</body>
+
+</html>
