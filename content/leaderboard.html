@@ -459,7 +459,7 @@
             }
 
             async function downloadFile() {
-                let response = await fetch(`/${_txtRet(_type)}.txt`);
+                let response = await fetch(`https://quec-apps.github.io/vlearn/content/${_txtRet(_type)}.txt`);
                 console.log(response);
 
                 if (response.status != 200) {
