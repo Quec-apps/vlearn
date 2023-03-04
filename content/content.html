@@ -574,8 +574,8 @@
                 localStorage.setItem("lessonDict", JSON.stringify(lessonDict));
                 canSync = parseInt(localStorage.canSync); canSync += 2; localStorage.canSync = canSync;
 
-        currentLang = JSON.parse(localStorage.currentLang);
-        yourLang = JSON.parse(localStorage.yourLang);
+        currentLang = localStorage.currentLang;
+        yourLang = localStorage.yourLang;
         
                 window[currentLang + "-" + yourLang + "-crct"] = { "1": 0 };
                 window[currentLang + "-" + yourLang + "-total"] = { "1": 0 };
