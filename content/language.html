@@ -180,11 +180,11 @@
     <div class="mid">
         <div class="lang-bg">
             <div class="txt">Which language you want to learn?</div>
-            <div class="lang-bg-con" onclick="selectedLang = 'eng'">
+            <div class="lang-bg-con eng-bg-con">
                 <div class="lang2-con dark-border">Aa</div>
                 <div class="lang-con dark-border">English</div>
             </div>
-            <div class="lang-bg-con" onclick="selectedLang = 'hin'">
+            <div class="lang-bg-con hin-bg-con">
                 <div class="lang2-con dark-border">अ</div>
                 <div class="lang-con dark-border">Hindi</div>
             </div>
@@ -245,7 +245,12 @@
             $(this).css({ borderColor: 'green', color: 'green' });
             $(".learning-lang-btn").css({ backgroundColor: 'green', boxShadow: '1px 3px #093f12' });
         });
-
+        $(".eng-bg-con").click(function() {
+           selectedLang = 'eng' 
+        });
+        $(".hin-bg-con").click(function() {
+           selectedLang = 'hin' 
+        });
         $(".learning-lang-btn").click(function () {
             if (!langProceed)
                 return;
