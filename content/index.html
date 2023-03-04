@@ -15,7 +15,11 @@
         if (localStorage.uid == null) {
             location.replace("login.html");
         } else if (localStorage.langDict == null) {
-            location.replace("language.html");
+            localStorage.langDict = "{"hin-mal":1}"
+            localStorage.lessonDict = "{"hin-mal":1}"
+            localStorage.currentLang = "hin"
+            localStorage.yourLang = "mal"
+            location.replace("content.html");
         } else {
             location.replace("content.html");
         }
