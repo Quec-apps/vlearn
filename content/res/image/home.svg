@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="128mm"
+   height="128mm"
+   viewBox="0 0 128 128"
+   version="1.1"
+   id="svg20140"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs20137" />
+  <g
+     id="layer1">
+    <g
+       id="g975"
+       transform="matrix(3.0839561,0,0,3.0839561,-10.014948,-10.477542)">
+      <polygon
+         fill="#e8eaf6"
+         points="6,23 24,6 42,23 42,39 6,39 "
+         id="polygon945" />
+      <g
+         fill="#c5cae9"
+         id="g951">
+        <polygon
+           points="34,16 34,9 39,9 39,21 "
+           id="polygon947" />
+        <rect
+           x="6"
+           y="39"
+           width="36"
+           height="5"
+           id="rect949" />
+      </g>
+      <polygon
+         fill="#b71c1c"
+         points="44,22.9 24,4.3 4,22.9 6,25.1 24,8.4 42,25.1 "
+         id="polygon953" />
+      <rect
+         x="18"
+         y="28"
+         fill="#d84315"
+         width="12"
+         height="16"
+         id="rect955-6" />
+      <rect
+         x="21"
+         y="17"
+         fill="#01579b"
+         width="6"
+         height="6"
+         id="rect957" />
+      <path
+         fill="#ff8a65"
+         d="M 27.5,35.5 C 27.2,35.5 27,35.7 27,36 v 2 c 0,0.3 0.2,0.5 0.5,0.5 0.3,0 0.5,-0.2 0.5,-0.5 v -2 c 0,-0.3 -0.2,-0.5 -0.5,-0.5 z"
+         id="path959" />
+    </g>
+  </g>
+</svg>
