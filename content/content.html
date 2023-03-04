@@ -566,6 +566,20 @@
         });
     </script>
     <script>
+        langDict[currentLang + "-" + yourLang] = 1;
+        lessonDict[currentLang + "-" + yourLang] = 1;
+                xpDict[currentLang + "-" + yourLang] = 0;
+                delete langDict[currentLang];
+                localStorage.setItem("langDict", JSON.stringify(langDict));
+                localStorage.setItem("lessonDict", JSON.stringify(lessonDict));
+                localStorage.setItem("xpDict", JSON.stringify(xpDict));
+                localStorage.currentLang = selectedLang;
+                localStorage.yourLang = yourLang;
+                canSync = parseInt(localStorage.canSync); canSync += 2; localStorage.canSync = canSync;
+
+                window[currentLang + "-" + yourLang + "-crct"] = { "1": 0 };
+                window[currentLang + "-" + yourLang + "-total"] = { "1": 0 };
+        
         langDict = JSON.parse(localStorage.langDict);
         lessonDict = JSON.parse(localStorage.lessonDict);
         currentLang = localStorage.currentLang; yourLang = localStorage.yourLang;
