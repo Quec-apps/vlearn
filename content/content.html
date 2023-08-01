@@ -749,8 +749,7 @@
         });
 
         _crctDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-crct" + currentSection));
-        // _crctDict[2]=[0,0];
-        // // console.log(_crctDict);
+
         if (_crctDict == null) {
             localStorage.setItem(currentLang + "-" + yourLang + "-crct" + currentSection, '{"1":[0,0]}');
             _crctDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-crct" + currentSection));
@@ -762,10 +761,6 @@
                 $(".section-con").css({ transform: 'translateX(0)' });
             }, 400);
         });
-
-        // if (localStorage.sectionSelected == null) {
-        //     $(".section-con").css({ left: '0%' });
-        // }
 
         $(".xp").text(xp + " XP");
         tmpXp = 0;
@@ -819,12 +814,6 @@
 
         }
 
-        // function SectionLock(section_) {
-        //     $(".lesson-bg").append(`
-
-        //     `);
-        // }
-
         function LearnTxt(level) {
             if (level < currentLevel) {
                 //practice
@@ -872,10 +861,6 @@
                 return "<img src='res/image/lock.png' class='lock-img'>";
             }
         }
-        // function jumpAppend() {
-        //     if (appendingLevel >= currentLevel)
-        //         return $(".lesson-bg").append(`<div class="jump-ct jump-ct-${unitCount - 1}" onclick="localStorage.quiz=${appendingLevel + 1}; jumpClickFunc(${appendingLevel + 1})"><img src="res/image/skip.svg" class="lock-img"></div>`);
-        // }
 
         function ctAppend() {
             appendingLevel=0;
@@ -910,28 +895,6 @@
             localStorage.openedLevel = clickedLevel;
             parent.location = "ques/ques.html";
         }
-
-
-        // function checkAppend() {
-        //     if (appendingLevel > currentLevel) {
-        //         //locked level
-        //         $("#ct" + appendingLevel).append("<img src='res/image/lock.png' class='lock-img'>");
-        //     }
-        //     else if (appendingLevel < currentLevel) {
-        //         //unlocked level
-        //         percent_ = ((_crctDict[appendingLevel][0] / _crctDict[appendingLevel][1]) * 100).toFixed(0);
-        //         if (isNaN(percent_))
-        //             percent_ = 0;
-        //         if (percent_ == 100) {
-        //             $("#ct" + appendingLevel).css({ backgroundColor: '#01a80c', boxShadow: '0px 4px #01620b' });
-        //             $(".tick" + appendingLevel).attr('src', 'res/image/white-tick.svg');
-        //         }
-        //     }
-        //     else if (currentLevel == appendingLevel) {
-        //         //current level
-        //         $("#ct" + currentLevel).append(`<div class="less-txt"><span>${currentLesson}</span>/<span>${lessonCount[appendingLevel]}</span></div>`);
-        //     }
-        // }
 
         for (i in fullPercent) {
             console.log(fullPercent[i]);
@@ -975,172 +938,11 @@
         var crct3ChangeSync = localStorage.crct3ChangeSync;
 
         function initialiseFirebase(type) {
-            // const firebaseConfig = {
-            //     apiKey: "AIzaSyAUsITBVaLfYHvHvjUO9luxXrY_ndksAGg",
-            //     authDomain: "vlearn-3f975.firebaseapp.com",
-            //     projectId: "vlearn-3f975",
-            //     storageBucket: "vlearn-3f975.appspot.com",
-            //     messagingSenderId: "1088954673537",
-            //     appId: "1:1088954673537:web:91b7ac4a2f7c32f77f6080",
-            //     databaseURL: "https://vlearn-3f975-default-rtdb.asia-southeast1.firebasedatabase.app"
-            // };
-
-            // // Initialize Firebase
-            // const app = initializeApp(firebaseConfig);
-            // const auth = getAuth();
-            // console.log("auth is", auth);
-
-            // if (type == "store") {
-            //     auth.onAuthStateChanged((user) => {
-            //         if (user) {
-            //             // User logged in already or has just logged in.
-            //             console.log(user.uid);
-            //         } else {
-            //             // User not logged in or has just logged out.
-            //             alert("User Logout")
-            //             location.replace("login.html");
-            //         }
-            //     });
-            //     syncData("storeOnly");
-            // } else if (type == "signout") {
-            //     syncData("signout");
-            // }
+            // working
         }
 
         function syncData(type) {
-            // const db = getDatabase();
-            // console.log(db);
-            // if (courseChangeSync > 1 || localStorage.firstSync == null) {
-            //     set(ref(db, 'users/' + localStorage.uid + '/i'), {
-            //         cl: localStorage.currentLang,
-            //         yl: localStorage.yourLang
-            //     }).then(() => {
-            //         // Data saved successfully!
-            //         console.log("courseChangeSync Saved Successfully");
-            //         courseChangeSync = 0;
-            //         localStorage.courseChangeSync = 0;
-            //     }).catch((error) => {
-            //         // The write failed...
-            //         console.log('courseChangeSync Error:', error);
-            //     });
-            // }
-            // var canSyncXp = false;
-            // setTimeout(() => {
-            //     if (level1ChangeSync > 1 || localStorage.firstSync == null) {
-            //         canSyncXp = true;
-            //         set(ref(db, `users/${localStorage.uid}/j/s1`), {
-            //             laD: localStorage.langDict1,
-            //             leD: localStorage.lessonDict1,
-            //         }).then(() => {
-            //             // Data saved successfully!
-            //             console.log("level1ChangeSync Saved Successfully");
-            //             console.log(localStorage.langDict1);
-            //             level1ChangeSync = 0;
-            //             localStorage.level1ChangeSync = 0;
-            //         }).catch((error) => {
-            //             // The write failed...
-            //             console.log('level1ChangeSync Error:', error);
-            //         });
-            //     }
-
-            //     if (level2ChangeSync > 1 || localStorage.firstSync == null) {
-            //         canSyncXp = true;
-            //         set(ref(db, `users/${localStorage.uid}/j/s2`), {
-            //             laD: localStorage.langDict2,
-            //             leD: localStorage.lessonDict2,
-            //         }).then(() => {
-            //             // Data saved successfully!
-            //             console.log("level2ChangeSync Saved Successfully");
-            //             console.log(localStorage.langDict1);
-            //             level2ChangeSync = 0;
-            //             localStorage.level2ChangeSync = 0;
-            //             console.log(canSyncXp);
-            //         }).catch((error) => {
-            //             // The write failed...
-            //             console.log('level1ChangeSync Error:', error);
-            //         });
-            //     }
-
-            //     if (level3ChangeSync > 1 || localStorage.firstSync == null) {
-            //         canSyncXp = true;
-            //         set(ref(db, `users/${localStorage.uid}/j/s3`), {
-            //             laD: localStorage.langDict3,
-            //             leD: localStorage.lessonDict3,
-            //         }).then(() => {
-            //             // Data saved successfully!
-            //             console.log("level3ChangeSync Saved Successfully");
-            //             console.log(localStorage.langDict1);
-            //             level3ChangeSync = 0;
-            //             localStorage.level3ChangeSync = 0;
-            //         }).catch((error) => {
-            //             // The write failed...
-            //             console.log('level3ChangeSync Error:', error);
-            //         });
-            //     }
-            //     console.log(canSyncXp);
-            //     if (canSyncXp) {
-            //         set(ref(db, 'users/' + localStorage.uid + '/xp'), {
-            //             xp: localStorage.xpDict,
-            //         })
-            //     }
-
-            // }, 400);
-
-            // if (crct1ChangeSync > 1 || localStorage.firstSync == null) {
-            //     set(ref(db, 'users/' + localStorage.uid + '/k/' + currentLang + "-" + yourLang + 1), {
-            //         crct: JSON.stringify(_crctDict),
-            //     }).then(() => {
-            //         // Data saved successfully!
-            //         console.log("crct1ChangeSync Saved Successfully");
-            //         crct1ChangeSync = 0;
-            //         localStorage.crct1ChangeSync = 0;
-            //     }).catch((error) => {
-            //         // The write failed...
-            //         console.log('crct1ChangeSync Error:', error);
-            //     });
-            // }
-            // if (crct2ChangeSync > 1 || localStorage.firstSync == null) {
-            //     set(ref(db, 'users/' + localStorage.uid + '/k/' + currentLang + "-" + yourLang + 2), {
-            //         crct: JSON.stringify(_crctDict),
-            //     }).then(() => {
-            //         // Data saved successfully!
-            //         console.log("crct2ChangeSync Saved Successfully");
-            //         crct2ChangeSync = 0;
-            //         localStorage.crct2ChangeSync = 0;
-            //     }).catch((error) => {
-            //         // The write failed...
-            //         console.log('crct2ChangeSync Error:', error);
-            //     });
-            // }
-            // if (crct3ChangeSync > 1 || localStorage.firstSync == null) {
-            //     set(ref(db, 'users/' + localStorage.uid + '/k/' + currentLang + "-" + yourLang + 3), {
-            //         crct: JSON.stringify(_crctDict),
-            //     }).then(() => {
-            //         // Data saved successfully!
-            //         console.log("crct3ChangeSync Saved Successfully");
-            //         crct3ChangeSync = 0;
-            //         localStorage.crct3ChangeSync = 0;
-            //         if (localStorage.firstSync == null) {
-            //             localStorage.firstSync = 'done';
-            //         }
-            //     }).catch((error) => {
-            //         // The write failed...
-            //         console.log('crct3ChangeSync Error:', error);
-            //     });
-            // }
-
-            // if (type == "signout") {
-            //     const auth = getAuth();
-            //     signOut(auth).then(() => {
-            //         // Sign-out successful.
-            //         localStorage.clear();
-            //         location.replace("login.html");
-            //     }).catch((error) => {
-            //         // An error happened.
-            //         console.log(error);
-            //         $(".error-txt").fadeIn();
-            //     });
-            // }
+            //working
         }
 
         if (localStorage.canSync == null) localStorage.canSync = 0;
