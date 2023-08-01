@@ -106,7 +106,7 @@ body {
 }
 .gray-btn, .green-btn, .red-btn {
     width: 90vw;
-    height: 10vw;
+    padding: 10px 0;
     font-size: 5.5vw;
     font-family: berlin-bold;
     background-color: #b6b6b6;
@@ -138,11 +138,11 @@ body {
     display: none;
 }
 .result-ct {
-    width: 100vw; height: 15vh;
+    width: 100vw; height: 20vh;
     background-color: #20cd20da;
-    position: fixed; top: 85vh; left: 0;
+    position: fixed; top: 80vh; left: 0;
     display: flex; flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; align-content: center;
     transform: translateY(100%); opacity: 0;
     transition: all 0.2s ease-in-out;
 }
@@ -178,16 +178,18 @@ body {
         if (localStorage.darkMode == null) $('body').css({color:'black'});
         else $('body').css({color:'white'});
 
-        currentLang = window.parent.currentLang;
-        yourLang = localStorage.yourLang;
-        langDict = JSON.parse(localStorage.langDict);
-        currentLevel = langDict[currentLang+"-"+yourLang]
+        // currentLang = window.parent.currentLang;
+        // yourLang = localStorage.yourLang;
+        // langDict = JSON.parse(localStorage.langDict);
+        // currentLevel = langDict[currentLang+"-"+yourLang]
         openedLevel = localStorage.openedLevel;
-        lessonDict = JSON.parse(localStorage.lessonDict);
-        currentLesson = JSON.parse(lessonDict[currentLang+"-"+yourLang]);
+        // lessonDict = JSON.parse(localStorage.lessonDict);
+        // currentLesson = JSON.parse(lessonDict[currentLang+"-"+yourLang]);
         currentLang = localStorage.currentLang; yourLang = localStorage.yourLang;
 
-        $("body").prepend(`<script src="../res/var/${currentLang}/${currentLang}-${yourLang}/l${openedLevel}.js" id="_script">`);
+        currentSection=localStorage.currentSection;
+
+        $("body").prepend(`<script src="../res/var/${currentLang}/${currentLang}-${yourLang}/s${currentSection}/l${openedLevel}.js" id="_script">`);
     </script>
 
     <div class="txt-bg"><div class="txt">Choose the correct image</div><div class="report"><img src="../res/image/error.png" class="report-img" alt="error"> Report</div></div>
@@ -237,9 +239,9 @@ else $("#read").attr("src", "../res/voice/"+window[appendStr+"-m"+window.parent.
 
 if (window[appendStr+"-n"+window.parent.chapter] != null && localStorage.quiz == null) {
     if (yourLang == "eng") $(".new-txt").text("New word");
-    if (yourLang == "hin") $(".new-txt").text("नए शब्द");
-    if (yourLang == "tam") $(".new-txt").text("புதிய சொல்");
-    if (yourLang == "mal") $(".new-txt").text("പുതിയ വാക്ക്");
+    else if (yourLang == "hin") $(".new-txt").text("नए शब्द");
+    else if (yourLang == "tam") $(".new-txt").text("புதிய சொல்");
+    else if (yourLang == "mal") $(".new-txt").text("പുതിയ വാക്ക്");
 
     $("#new-word").text(window[appendStr+"-n-m"+window.parent.chapter]);
     $("#translated-txt").text(window[appendStr+"-n"+window.parent.chapter]);
@@ -263,12 +265,25 @@ $(".voice-img").click(function() {
     document.getElementById("read").play();
 })
 
+option1=option2=option3=option4=false;
+
 function img_ct(int) {
 canAns = true;
 clickedAns = int;
 $(".img-ct").css({borderColor:'#6f6f6f', backgroundColor:'transparent'});
 $(".img-ct"+int).css({borderColor:'#84d7ff', backgroundColor:'#84d7ffad'});
 $(".gray-btn").css({backgroundColor:green, boxShadow:'1px 3px '+darkGreen});
+
+if (window[appendStr+"-m"+int+"-"+window.parent.chapter] != null) {
+    if (!window['option'+int]) {
+        $("body").append(`<audio id="op_aud${int}" src='../res/voice/${window[appendStr+"-m"+int+"-"+window.parent.chapter]}'></audio>`);
+        window['option'+int] = true;
+        console.log('this runned')
+    }
+    document.getElementById('op_aud'+int).play();
+    console.log(document.getElementById('op_aud'+int))
+    //audio is available
+}
 }
 
 function ansCorrect() {

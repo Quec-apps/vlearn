@@ -36,6 +36,7 @@ body {
 .txt {
     width: 80%;
 }
+
 .report {
     width: 20%;
     display: flex;
@@ -59,7 +60,7 @@ body {
     padding-left: 2vw;
 }
 .voice-img-bg {
-    width: 10vw; height: 10vw;
+    width: 35px; height: 35px;
     background-color: #0030ed;
     box-shadow: 0px 3px #00009a;
     border-radius: 10px;
@@ -69,11 +70,31 @@ body {
     transform: translateY(3px);
 }
 .voice-img {
-    width: 8vw; height: 8vw;
+    width: 26px; height: 26px;
+}
+span {
+    margin-left: 5px;
+    position: relative;
 }
 .ques-txt{
-    font-size: 5vw;
-    margin-left: 3vw;
+    font-size: large;
+    margin-left: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.underlined {
+    text-decoration: underline dotted;
+}
+.span-box {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px rgb(0 0 0 / 49%);
+    padding: 10px;
+    position: absolute;
+    top: 125%;
+    display: none;
+    z-index: 1;
 }
 
 .ans-show {
@@ -104,11 +125,10 @@ body {
     display: flex; justify-content: space-around; flex-wrap: wrap; align-content: center;
 }
 .q-ct, .q-ct-2 {
-    height: 9vw;
     font-size: 4vw;
     border-radius: 10px;
     border: solid 0.6vw #696969;
-    padding: 0 4vw;
+    padding: 10px 15px;
     display: flex; align-items: center;
     margin: 2vh 5vw;
 } .q-ct:active {
@@ -117,7 +137,7 @@ body {
 .q-ct-2 {
     margin: 0 1.5vw;
     margin-bottom: 1vh;
-    padding: 0 3vw;
+    padding: 10px 13px;
     font-size: 3vw;
 }
 
@@ -128,7 +148,7 @@ body {
 }
 .gray-btn, .green-btn, .red-btn {
     width: 70vw;
-    height: 10vw;
+    padding: 10px 0;
     font-size: 5.5vw;
     font-family: berlin-bold;
     background-color: #b6b6b6;
@@ -168,11 +188,11 @@ body {
     display: none;
 }
 .result-ct {
-    width: 100vw; height: 15vh;
+    width: 100vw; height: 20vh;
     background-color: #20cd20da;
-    position: fixed; top: 85vh; left: 0;
+    position: fixed; top: 80vh; left: 0;
     display: flex; flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; align-content: center;
     transform: translateY(100%); opacity: 0;
     transition: all 0.2s ease-in-out;
 }
@@ -201,6 +221,7 @@ body {
     color: #49c0f8;
     font-size: 5vw;
 }
+
 </style>
 </head>
 <body>
@@ -208,18 +229,20 @@ body {
         if (localStorage.darkMode == null) $('body').css({color:'black'});
         else $('body').css({color:'white'});
         
-        currentLang = window.parent.currentLang;
-        yourLang = localStorage.yourLang;
-        langDict = JSON.parse(localStorage.langDict);
-        currentLevel = langDict[currentLang+"-"+yourLang]
+        // currentLang = window.parent.currentLang;
+        // yourLang = localStorage.yourLang;
+        // langDict = JSON.parse(localStorage.langDict);
+        // currentLevel = langDict[currentLang+"-"+yourLang]
+        // lessonDict = JSON.parse(localStorage.lessonDict);
+        // currentLesson = JSON.parse(lessonDict[currentLang+"-"+yourLang]);
         openedLevel = localStorage.openedLevel;
-        lessonDict = JSON.parse(localStorage.lessonDict);
-        currentLesson = JSON.parse(lessonDict[currentLang+"-"+yourLang]);
         currentLang = localStorage.currentLang; yourLang = localStorage.yourLang;
-        $("body").prepend(`<script src="../res/var/${currentLang}/${currentLang}-${yourLang}/l${openedLevel}.js" id="_script">`);
+        currentSection=localStorage.currentSection;
+
+        $("body").prepend(`<script src="../res/var/${currentLang}/${currentLang}-${yourLang}/s${currentSection}/l${openedLevel}.js" id="_script">`);
     </script>
     <div class="txt-bg"><div class="txt">Select the words in order to make below sentence</div><div class="report"><img src="../res/image/error.png" class="report-img" alt="error"> Report</div></div>
-    <div class="ques-bg"><div class="voice-img-bg"><img src="../res/image/speaker.svg" class="voice-img"></div><div class="ques-txt">This house is awesome</div></div>
+    <div class="ques-bg"><div class="voice-img-bg"><img src="../res/image/speaker.svg" class="voice-img"></div><div class="ques-txt"></div></div>
     <div class="new-word-bg"><div class="new-word-ct"><div class="new-txt">New word</div> <div class="new-txt2"></div><span id="translated-txt"></span> : <span id="new-word"></span></div></div></div>
 
     <div class="content">
@@ -261,12 +284,56 @@ isWrong = false;
 function append() {
 ans = window[appendStr+"-ans"+window.parent.chapter]
 console.log(ans);
-$(".ques-txt").text(window[appendStr+"-q"+window.parent.chapter]);
+quesTxt = window[appendStr+"-q"+window.parent.chapter];
+splittedQues = quesTxt.split(' ');
+splittedQuesLower = quesTxt.toLowerCase().split(' ');
+wordIndex = [];
+totalUnit = 2; //change this
+
+$("body").append(`<script src="../res/var/word/allWords.js" id="_src">`);
+for (i in splittedQuesLower) {
+    wordIndexed = false;
+    for (j in window[currentLang + "Word"]) {
+        if (splittedQuesLower[i] == window[currentLang + "Word"][j].toLowerCase()) {
+            console.log(window[currentLang + "Word"][j]);
+            wordIndex.push(parseInt(j))
+            wordIndexed=true;
+            break;
+        } else if (wordIndexed == false && (parseInt(j)+1) == window[currentLang + "Word"].length) {
+            wordIndex.push(-1);
+            wordIndexed=true;
+        }
+        console.log(window[currentLang + "Word"].length)
+        // console.log(window[currentLang + "Word"][j])
+    }
+
+    wordIndexed = false;
+    if (wordIndex[i] == -1) {
+        //no meaning available for this word
+        tmpVar_ = ''
+    } else {
+        tmpVar_ = 'underlined'
+    }
+    $(".ques-txt").append(`<span class='ques_span ${tmpVar_}' id='s${wordIndex[i]}'>${splittedQues[i]}</span`);
+    $("#s"+wordIndex[i]).append(`<div class='span-box' id='b${wordIndex[i]}'>${window[currentLang + "Word"][wordIndex[i]]} : ${window[yourLang + "Word"][wordIndex[i]]}</div>`)
+
+    console.log('wordIndex',wordIndex);
+}
+console.log(splittedQues);
+
 optionLen = window[appendStr+"-l"+window.parent.chapter]
 console.log("OptionLen is "+optionLen);
 for (i=1; i<= optionLen; i++) {
 $(".ques-ct-bg").append(`<div onclick='ct_click(${i})' class='q-ct q-ct${i}'>${window[appendStr+"-o"+i+window.parent.chapter]}</div>`);
 }
+
+$(function () {
+	var parent = $(".ques-ct-bg");
+	var divs = parent.children();
+	while (divs.length) {
+		parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+	}
+});
 
 if (window[appendStr+"-m"+window.parent.chapter] == null) $(".voice-img-bg").css({visibility:'hidden'});
 else $("#read").attr("src", "../res/voice/"+window[appendStr+"-m"+window.parent.chapter]);
@@ -289,6 +356,16 @@ $(".txt4").text(window[appendStr+"-o4"+window.parent.chapter]);
 }
 append();
 
+$(".ques_span").click(function() {
+    $(".span-box").fadeOut();
+    id_ = parseInt($(this).attr('id').replace("s",""));
+    if (id_ == -1) {
+        return
+    }
+    console.log(id_)
+    $("#b"+id_).fadeIn();
+});
+
 $(".voice-img").click(function() {
     document.getElementById("read").play();
 });
@@ -300,6 +377,7 @@ if (!canCtClick) return;
 
 canCtClick = false;
 canAns = true;
+$('.span-box').fadeOut();
 $(".gray-btn").css({backgroundColor:green, boxShadow:'1px 3px '+darkGreen});
 $(".ans-del-img").css({visibility:'visible'});
 console.log(clickedAns);
@@ -337,6 +415,8 @@ function removeLetter(clickedIndex, int) {
 $(".ans-del-img").click(function() {
 canAns = false;
 
+$('.span-box').fadeOut();
+
 $(this).css({visibility:'hidden'});
 clickedAns = [];
 index = 0;
@@ -350,6 +430,7 @@ $(".gray-btn").click(function() {
 if (!canAns)
     return;
 
+$('.span-box').fadeOut();
 console.log(ans.length+ "&"+clickedAns.length);
 if (ans.length == clickedAns.length) {
 //can check for answer

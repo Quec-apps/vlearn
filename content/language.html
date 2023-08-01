@@ -180,15 +180,15 @@
     <div class="mid">
         <div class="lang-bg">
             <div class="txt">Which language you want to learn?</div>
-            <div class="lang-bg-con eng-bg-con">
+            <div class="lang-bg-con" onclick="selectedLang = 'eng'">
                 <div class="lang2-con dark-border">Aa</div>
                 <div class="lang-con dark-border">English</div>
             </div>
-            <div class="lang-bg-con hin-bg-con">
+            <div class="lang-bg-con" onclick="selectedLang = 'hin'">
                 <div class="lang2-con dark-border">अ</div>
                 <div class="lang-con dark-border">Hindi</div>
             </div>
-            <div class="lang-bg-con" onclick="selectedLang = 'mal'" style="display:none;">
+            <div class="lang-bg-con" onclick="selectedLang = 'mal'">
                 <div class="lang2-con dark-border">അ</div>
                 <div class="lang-con dark-border">Malayalam</div>
             </div>
@@ -245,12 +245,7 @@
             $(this).css({ borderColor: 'green', color: 'green' });
             $(".learning-lang-btn").css({ backgroundColor: 'green', boxShadow: '1px 3px #093f12' });
         });
-        $(".eng-bg-con").click(function() {
-           selectedLang = 'eng' 
-        });
-        $(".hin-bg-con").click(function() {
-           selectedLang = 'hin' 
-        });
+
         $(".learning-lang-btn").click(function () {
             if (!langProceed)
                 return;
@@ -281,23 +276,29 @@
                 lessonDict[currentLang + "-" + yourLang] = 1;
                 xpDict[currentLang + "-" + yourLang] = 0;
                 delete langDict[currentLang];
-                localStorage.setItem("langDict", JSON.stringify(langDict));
-                localStorage.setItem("lessonDict", JSON.stringify(lessonDict));
+                localStorage.setItem("langDict1", JSON.stringify(langDict));
+                localStorage.setItem("lessonDict1", JSON.stringify(lessonDict));
+
+                localStorage.setItem("langDict2", JSON.stringify(langDict));
+                localStorage.setItem("lessonDict2", JSON.stringify(lessonDict));
+
+                localStorage.setItem("langDict3", JSON.stringify(langDict));
+                localStorage.setItem("lessonDict3", JSON.stringify(lessonDict));
+
                 localStorage.setItem("xpDict", JSON.stringify(xpDict));
                 localStorage.currentLang = selectedLang;
                 localStorage.yourLang = yourLang;
                 canSync = parseInt(localStorage.canSync); canSync += 2; localStorage.canSync = canSync;
 
-                window[currentLang + "-" + yourLang + "-crct"] = { "1": 0 };
-                window[currentLang + "-" + yourLang + "-total"] = { "1": 0 };
+                window[currentLang + "-" + yourLang + "-crct1"] = { "1": 0 };
 
                 location.replace("content.html");
             }
         });
 
         if (localStorage.langDict != null) {
-            langDict = JSON.parse(localStorage.langDict);
-            lessonDict = JSON.parse(localStorage.lessonDict);
+            langDict = JSON.parse(localStorage.langDict1);
+            lessonDict = JSON.parse(localStorage.lessonDict1);
             xpDict = JSON.parse(localStorage.xpDict);
         }
         else {

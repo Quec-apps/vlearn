@@ -105,7 +105,7 @@
         .gray-btn,
         .green-btn {
             width: 90vw;
-            height: 10vw;
+            padding: 10px 0;
             font-size: 5.5vw;
             font-family: berlin-bold;
             background-color: #b6b6b6;
@@ -143,14 +143,14 @@
 
         .result-ct {
             width: 100vw;
-            height: 15vh;
+            height: 20vh;
             background-color: #20cd20da;
             position: fixed;
-            top: 85vh;
+            top: 80vh;
             left: 0;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: center; align-content: center;
             transform: translateY(100%);
             opacity: 0;
             transition: all 0.2s ease-in-out;
@@ -177,16 +177,20 @@
             $('.ct').css({ color: 'black', borderColor: 'black' });
         }
 
-        currentLang = window.parent.currentLang;
-        yourLang = localStorage.yourLang;
-        langDict = JSON.parse(localStorage.langDict);
-        currentLevel = langDict[currentLang + "-" + yourLang]
+        // currentLang = window.parent.currentLang;
+        // yourLang = localStorage.yourLang;
+        // langDict = JSON.parse(localStorage.langDict);
+        // currentLevel = langDict[currentLang + "-" + yourLang]
+        // lessonDict = JSON.parse(localStorage.lessonDict);
+        // currentLesson = JSON.parse(lessonDict[currentLang + "-" + yourLang]);
         openedLevel = parseInt(localStorage.openedLevel);
-        lessonDict = JSON.parse(localStorage.lessonDict);
-        currentLesson = JSON.parse(lessonDict[currentLang + "-" + yourLang]);
         currentLang = localStorage.currentLang; yourLang = localStorage.yourLang;
 
-        $("body").prepend(`<script src="../res/var/${currentLang}/${currentLang}-${yourLang}/l${openedLevel}.js" id="_script">`);
+        currentSection=localStorage.currentSection;
+
+        currentSection=localStorage.currentSection;
+
+        $("body").prepend(`<script src="../res/var/${currentLang}/${currentLang}-${yourLang}/s${currentSection}/l${openedLevel}.js" id="_script">`);
     </script>
     <div class="txt-bg">
         <div class="txt">Match the following pairs</div>
@@ -261,7 +265,7 @@
         if (clickedMode == "left") {
             document.getElementById("aud" + int).play();
         }
-        if (ansMode == "left" && clickedMode == "left") {
+        if (clickedMode == "left") {
             //left side can select
             leftSelect = int;
             ansMode = "right";

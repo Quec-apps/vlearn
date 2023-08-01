@@ -43,7 +43,6 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            padding-bottom: 100px;
         }
 
         .q-ct {
@@ -53,11 +52,11 @@
             font-size: large;
             border-radius: 10px;
             border: solid 4px #696969;
-            padding: 0 4vw;
+            padding: 0 7px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 2vh 5vw;
+            margin-bottom: 40px;
         }
     </style>
 </head>
@@ -71,10 +70,11 @@
         checkMode();
         $("body").append(`<script src="res/var/word/unit${localStorage.select_unit}.js" id="_src">`);
     </script>
-    <div class="ti">Lesson 1</div>
+    <div class="ti">Unit <span id="unit"></span></div>
     <div class="q-bg q-bg1"></div>
 
     <script>
+        $("#unit").text(localStorage.select_unit);
         $(document).ready(function () {
             currentLang = localStorage.currentLang;
             yourLang = localStorage.yourLang;

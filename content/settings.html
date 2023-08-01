@@ -194,7 +194,8 @@
         </div>
     </div>
     <script>
-        langDict = JSON.parse(localStorage.langDict);
+        currentSection = localStorage.currentSection;
+        langDict = JSON.parse(localStorage.getItem('langDict'+currentSection));
         langLen = Object.keys(langDict).length;
         console.log(langLen);
         $(".profile-txt").text(localStorage.email);

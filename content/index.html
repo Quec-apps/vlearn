@@ -11,16 +11,10 @@
 <body>
 
     <script>
-        localStorage.uid = "9utynQixuZbsEpHFY93hy8mIAXo1";
         if (localStorage.uid == null) {
             location.replace("login.html");
         } else if (localStorage.langDict == null) {
-            localStorage.langDict = '{"hin-mal":1}'
-            localStorage.lessonDict = '{"hin-mal":1}'
-            localStorage.setItem("xpDict", '{"hin-mal":0}');
-            localStorage.currentLang = "hin"
-            localStorage.yourLang = "mal"
-            location.replace("content.html");
+            location.replace("language.html");
         } else {
             location.replace("content.html");
         }

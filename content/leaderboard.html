@@ -427,14 +427,16 @@
         // }
 
         function numTxt() {
-            if (xp < 10) {
-                return "250 - 300";
+            if (xp < 5) {
+                return "300 - 350";
             } else if (xp < 50) {
-                return "200 - 250";
+                return "250 - 300";
             } else if (xp < 100) {
-                return "150 - 200";
+                return "200 - 250";
             } else if (xp < 200) {
                 return "100 - 150";
+            } else {
+                return "50 - 100";
             }
         }
 
@@ -459,12 +461,13 @@
             }
 
             async function downloadFile() {
-                let response = await fetch(`https://quec-apps.github.io/vlearn/content/${_txtRet(_type)}.txt`);
+                let response = await fetch(`/${_txtRet(_type)}.txt`);
                 console.log(response);
 
                 if (response.status != 200) {
                     //throw new Error("Server Error");
                     console.log("Error Occured");
+                    alert("Something went wrong!");
                 }
 
                 // read response stream as text

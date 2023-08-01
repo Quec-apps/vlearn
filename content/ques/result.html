@@ -138,10 +138,13 @@ else $("body").css({backgroundColor:'white'});
 <script src="../res/confetti.js"></script>
 <script>
 crctAns = parseInt(localStorage.crctAns);
-totalAns = localStorage.fullTotalAns;
+totalAns = parseInt(localStorage.fullTotalAns);
 currentLang = localStorage.currentLang;
 yourLang = localStorage.yourLang;
 openedLevel = localStorage.openedLevel;
+currentSection=localStorage.currentSection;
+lessonDict = JSON.parse(localStorage.getItem('lessonDict'+currentSection));
+currentLesson = lessonDict[currentLang + "-" + yourLang];
 
 xpDict = JSON.parse(localStorage.xpDict);
 xp = parseInt(xpDict[currentLang+"-"+yourLang]);
@@ -151,28 +154,25 @@ localStorage.setItem("xpDict", JSON.stringify(xpDict));
 $(".xp-txt").text("+"+localStorage.addedXp+" XP");
 $(".xp").text(xp+" XP");
 
-crctDict = JSON.parse(localStorage.getItem(currentLang+"-"+yourLang+"-crct"));
-totalDict = JSON.parse(localStorage.getItem(currentLang+"-"+yourLang+"-total"));
+parseInt(localStorage.getItem('crct'+currentSection+'ChangeSync'))+1;
+parseInt(localStorage.getItem('levelChangeSync'))+1;
+
+crctDict = JSON.parse(localStorage.getItem(currentLang+"-"+yourLang+"-crct"+currentSection));
 console.log("Geting1");
+if (crctDict[openedLevel] == null) {
+    crctDict[openedLevel] = [0,0];
+}
 console.log("crctDict",crctDict[openedLevel]);
 openedSkipedLevel = false;
-if (isNaN(crctDict[openedLevel])) {
-    // openedSkipedLevel = true;
-    crctDict[openedLevel] = crctAns;
-    totalDict[openedLevel] = totalAns;
-    console.log("crctDict[openedLevel]",crctDict[openedLevel])
-    console.log("totalDict[openedLevel]",totalDict[openedLevel])
-}
-console.log("crctDict2",crctDict[openedLevel]);
+
 
 if (localStorage.quiz != null) {
     //jump level is finished
     if (localStorage.quizWon == "true") {
         console.log("You are progressed to level", localStorage.quiz);
-        crctDict[localStorage.quiz] = crctAns;
-        totalDict[localStorage.quiz] = parseInt(localStorage.fullTotalAns);
-        localStorage.setItem(currentLang+"-"+yourLang+"-total", JSON.stringify(totalDict));
-        localStorage.setItem(currentLang+"-"+yourLang+"-crct", JSON.stringify(crctDict));
+        crctDict[localStorage.quiz][0] = crctAns;
+        crctDict[localStorage.quiz][1] = parseInt(localStorage.fullTotalAns);
+        localStorage.setItem(currentLang+"-"+yourLang+"-crct"+currentSection, JSON.stringify(crctDict));
         console.log("Saving2");
         percent = 100;
         $(".confetti").fadeIn(0);
@@ -190,39 +190,45 @@ if (localStorage.quiz != null) {
 else if (localStorage.openedPreviousLevel == null) {
 //first time winning this lesson
 
-_totalAns = totalDict[openedLevel];
+_totalAns = crctDict[openedLevel][1];
 console.log(_totalAns);
 _totalAns+=parseInt(totalAns);
-totalDict[openedLevel] = _totalAns;
-localStorage.setItem(currentLang+"-"+yourLang+"-total", JSON.stringify(totalDict));
-localStorage.setItem(currentLang+"-"+yourLang+"-crct", JSON.stringify(crctDict));
-console.log("Saving3");
+console.log("added _totalAns",_totalAns);
 
-if (crctDict[openedLevel] == null) {
+
+
+if ((currentLesson-1) == 1) {
     _crctAns = 0;
 } else {
-    _crctAns = parseInt(crctDict[openedLevel]);
+    _crctAns = parseInt(crctDict[openedLevel][0]);
 }
+console.log('currentLesson',currentLesson)
+console.log('_crctAns',_crctAns)
+console.log('openedLevel',openedLevel)
+console.log('_crctAns[]',crctDict[openedLevel])
+
 _crctAns+=parseInt(crctAns);
-crctDict[openedLevel] = _crctAns;
+crctDict[openedLevel][0] = _crctAns;
+crctDict[openedLevel][1] = _totalAns;
 console.log(_crctAns);
-localStorage.setItem(currentLang+"-"+yourLang+"-crct", JSON.stringify(crctDict));
-localStorage.setItem(currentLang+"-"+yourLang+"-total", JSON.stringify(totalDict));
+localStorage.setItem(currentLang+"-"+yourLang+"-crct"+currentSection, JSON.stringify(crctDict));
+
 console.log("Saving4");
+console.log('_crctAns',_crctAns)
+console.log('openedLevel',openedLevel)
+console.log('_crctAns[]',crctDict[openedLevel])
 
 percent = ((crctAns/totalAns)*100).toFixed(0);
 if (percent == 100) $(".confetti").fadeIn(0);
 
 appendAnim(percent);
-console.log("TotalDictn is",totalDict);
 console.log("CrctDict is",crctDict);
 } else {
 //already completed this level before
-previousCrctAns = crctDict[openedLevel];
+previousCrctAns = crctDict[openedLevel][0];
 totalAns = localStorage.fullTotalAns;
 _crctAns = parseInt(localStorage.crctAns);
-localStorage.setItem(currentLang+"-"+yourLang+"-crct", JSON.stringify(crctDict));
-localStorage.setItem(currentLang+"-"+yourLang+"-total", JSON.stringify(totalDict));
+localStorage.setItem(currentLang+"-"+yourLang+"-crct"+currentSection, JSON.stringify(crctDict));
 console.log("Saving5");
 
 oldPercent = parseInt(((previousCrctAns/totalAns)*100).toFixed(0));
@@ -237,10 +243,9 @@ if (newPercent > oldPercent) {
     $("#improve").text(newPercent - oldPercent);
     $(".improve-bg").css({color:'#01a80c'});
     $(".improve-bg").fadeIn();
-    crctDict[openedLevel] = _crctAns;
-    totalDict[openedLevel] = totalAns;
-    localStorage.setItem(currentLang+"-"+yourLang+"-crct", JSON.stringify(crctDict));
-    localStorage.setItem(currentLang+"-"+yourLang+"-total", JSON.stringify(totalDict));
+    crctDict[openedLevel][0] = parseInt(_crctAns);
+    crctDict[openedLevel][1] = parseInt(totalAns);
+    localStorage.setItem(currentLang+"-"+yourLang+"-crct"+currentSection, JSON.stringify(crctDict));
     console.log("Saving6");
     localStorage.canSync++;
 } else if (newPercent < oldPercent) {
@@ -256,7 +261,6 @@ $("#total-txt").text(totalAns);
 setTimeout(() => { $("#crct-txt, #total-txt").css({transform:'translateX(0)', opacity:'1'}); }, 400);
 
 function appendAnim(percent) {
-    console.log(crctDict,totalDict);
     _tmp = 0;
     console.log(percent)
     intrvl = setInterval(() => {

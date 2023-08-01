@@ -5,12 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2583427355566393"
-     crossorigin="anonymous"></script>
     <script src="res/jquery-3.6.2.min.js"></script>
     <title>Home - vLearn</title>
-    <meta name="robots" content="noindex">
-    
     <style>
         @font-face {
             font-family: berlin-bold;
@@ -59,18 +55,20 @@
             opacity: .4;
         }
 
-        .xp, .pts {
+        .xp,
+        .pts {
             font-size: large;
             color: #ff6600;
             padding-right: 3vw;
-        } .pts {
+        }
+
+        .pts {
             color: #17a786;
         }
 
         .content {
             width: 100vw;
-            height: 80vh;
-            /*background-color: blueviolet;*/
+            height: 82vh;
             position: relative;
         }
 
@@ -80,10 +78,11 @@
 
         .level-con {
             position: absolute;
+            width: 100%;
             top: 0;
             left: 0;
             height: 100%;
-            scroll-behavior: smooth;
+            /* scroll-behavior: smooth; */
             overflow-x: hidden;
             overflow-y: scroll;
         }
@@ -95,29 +94,65 @@
             left: 0;
             width: 100%;
             height: 100%;
-            transform: translateX(-100%);
+            transform: translateX(-200vw);
+        }
+
+        .section-con {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform: translateX(-200vw);
+            z-index: 11;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .red {
+            background-color: #ff4b4c;
+        }
+
+        .violet {
+            background-color: #cd348e;
+        }
+
+        .orange {
+            background-color: #ff9600;
+        }
+
+        .brown {
+            background-color: #dc8f47;
+        }
+
+        .blue {
+            background-color: #00af86;
+        }
+
+        .pink {
+            background-color: #ff87d1;
         }
 
         .unit-bg {
-            height: 10vh;
-            background-color: #ffbd22;
+            width: 100%;
+            max-width: 450px;
+            padding: 10px 0;
+            color: white;
             display: flex;
             align-content: space-around;
+            justify-content: center;
             flex-wrap: wrap;
-            margin: 5vh 0;
             position: relative;
         }
 
         .unit-txt {
-            width: 100vw;
-            color: white;
+            width: 100%;
+            text-align: center;
             font-size: x-large;
-            padding-left: 2vw;
             font-family: berlin-bold;
         }
 
         .unit-des {
-            color: white;
+            width: 100%;
+            text-align: center;
             font-size: large;
             font-family: berlin-regular;
             padding-left: 2vw;
@@ -125,12 +160,34 @@
         }
 
         .unit-img {
-            display:none;
+            width: 90px;
+        }
+
+        .less-txt {
+            font-size: 35px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .unit-note {
             width: 35px;
             height: 35px;
             position: absolute;
-            top: 30%;
-            left: 85%;
+            top: 10px;
+            right: 10px;
+        }
+
+        .l-btn {
+            border: solid 3.5px #00000062;
+            background-color: #00000045;
+            font-size: small;
+            border-radius: 10px;
+            padding: 12px 25px;
+        }
+
+        .l-btn:active {
+            opacity: .6;
         }
 
         .unit-img:active {
@@ -163,34 +220,6 @@
             transform: translateY(3px) !important;
         }
 
-        .jump-ct::before {
-            position: absolute;
-            content: "Jump here";
-            width: 70px;
-            background-color: blueviolet;
-            color: white;
-            padding: 5px;
-            text-align: center;
-            font-size: small;
-            border-radius: 10px;
-            transform: translateY(-100%);
-            animation: jump 2s ease-in-out infinite;
-        }
-
-        @keyframes jump {
-            0% {
-                transform: translateY(-100%);
-            }
-
-            50% {
-                transform: translateY(-120%);
-            }
-
-            100% {
-                transform: translateY(-100%);
-            }
-        }
-
         .percent-txt {
             width: 100%;
             text-align: center;
@@ -198,14 +227,9 @@
             color: white;
         }
 
-        .less-txt {
-            font-size: large;
-            color: white;
-        }
-
         .lock-img {
-            width: 25px;
-            height: 25px;
+            width: 45px;
+            height: 45px;
         }
 
         .btm {
@@ -244,6 +268,172 @@
             font-size: large;
             font-family: berlin-regular;
         }
+
+
+        .section-bg {
+            width: 100%;
+            height: 50%;
+            background-color: #dcdcdc;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .sec-img {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 5%;
+            left: 30%;
+            z-index: 0;
+        }
+
+        .section-ct {
+            width: 80%;
+            padding: 15px;
+            background-color: #0000003d;
+            border-radius: 10px;
+            color: #929292;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .sec-ti {
+            font-size: larger;
+            margin-bottom: 5px;
+        }
+
+        .sec-txt {
+            font-size: medium;
+            margin-bottom: 5px;
+        }
+
+        .btn {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 9px 0;
+            font-size: large;
+            background-color: #fff;
+            box-shadow: 1px 3px #00000047;
+            color: #00af86;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn:active {
+            box-shadow: 0px 0px #012201 !important;
+            transform: translate(1px, 3px);
+        }
+
+        .sec-bg {
+            height: 10vh;
+            background-color: #00af86;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            color: white;
+            z-index: 1;
+        }
+        .sec-text {
+            margin-left: 2px;
+            display: none;
+            width: 200px;
+        }
+
+        .change {
+            border: solid 3.5px #00000062;
+            font-size: small;
+            border-radius: 10px;
+            padding: 7px 15px;
+            margin-right: 30px;
+        }
+
+        .change:active {
+            opacity: .5;
+        }
+
+        @media (min-width: 480px) {
+            /*Mobile*/
+
+        }
+
+        @media (min-width: 768px) {
+
+            /*Tablet*/
+            .section-bg {
+                width: 50%;
+                height: 100%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+
+            /*Laptops*/
+            .section-bg {
+                width: 50%;
+                height: 100%;
+            }
+
+            .unit-bg {
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+
+            body {
+                display: flex;
+                flex-direction: row-reverse;
+                flex-wrap: wrap;
+            }
+
+            .top {
+                width: 10vw;
+                height: 100%;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .top-txt {
+                padding-left: 0;
+                text-align: center;
+            }
+
+            .xp,
+            .pts {
+                width: 100%;
+                text-align: center;
+                padding-right: 0;
+            }
+
+            .sec-bg {
+                border-radius: 0 0 15px 15px;
+            }
+
+            .content {
+                width: 80vw;
+                height: 100vh;
+            }
+
+            .btm {
+                width: 10vw;
+                height: 100%;
+                flex-wrap: wrap;
+                align-content: center;
+            }
+
+            .nav-ct {
+                width: 100%;
+                flex-wrap: wrap;
+                margin: 30px 0;
+            }
+
+        }
     </style>
 </head>
 
@@ -255,6 +445,34 @@
         }
         checkMode();
     </script>
+
+    <div class="con section-con">
+        <div class="section-bg" id="sec1" style="background-color: #00af86;">
+            <img src="res/image/character/lion_cub.webp" alt="lion cub" class="sec-img">
+            <div class="section-ct" style="color:#fff">
+                <div class="sec-ti">Section 1: Words</div>
+                <div class="sec-txt">Start with essential words and simple sentences</div>
+                <div class="btn" id="btn1">OPEN</div>
+            </div>
+        </div>
+        <div class="section-bg" id="sec2">
+            <img src="res/image/character/lion_young_b&w.png" alt="lion cub" class="sec-img">
+            <div class="section-ct">
+                <div class="sec-ti">Section 2: Sentences & conversation</div>
+                <div class="sec-txt">Advance your language with big sentences and conversations</div>
+                <div class="btn" id="btn2">JUMP HERE</div>
+            </div>
+        </div>
+        <!-- <div class="section-bg" id="sec3">
+            <img src="res/image/character/lion_teen_b&w.png" alt="lion cub" class="sec-img">
+            <div class="section-ct">
+                <div class="sec-ti">Section 3: Champion</div>
+                <div class="sec-txt">Keep your hindi strong with interesting challenges</div>
+                <div class="btn" id="btn3">JUMP HERE</div>
+            </div>
+        </div> -->
+    </div>
+
     <div class="top">
         <div class="top-txt"></div>
         <div class="xp"></div>
@@ -264,7 +482,20 @@
 
     <div class="content">
         <div class="con level-con">
+            <div class="sec-bg">
+                <span class="sec-text" id="eng-sec1">Section 1: Words</span>
+                <span class="sec-text" id="eng-sec2">Section 2: Big Sentences</span>
+
+                <span class="sec-text" id="mal-sec1">വിഭാഗം 1: വാക്കുകൾ</span>
+                <span class="sec-text" id="mal-sec2">വിഭാഗം 2: വലിയ വാക്യങ്ങൾ</span>
+
+                <span class="sec-text" id="hin-sec1">धारा 1: शब्द</span>
+                <span class="sec-text" id="hin-sec2">धारा 2: बड़े वाक्य</span>
+
+                <div class="change">CHANGE</div>
+            </div>
             <div class="lesson-bg">
+
             </div>
         </div>
         <div class="con alphabet-con"><iframe src="alphabet.html" frameborder="0"
@@ -340,7 +571,7 @@
 
         @keyframes logout-btn {
             0% {
-                transform: translateX(-100%);
+                transform: translateX(-200vw);
                 opacity: 0;
             }
 
@@ -407,10 +638,341 @@
             <div class="error-txt">*unknown error occured</div>
         </div>
     </div>
+    <script>
+
+        
+        if (localStorage.currentSection == null) {
+            localStorage.currentSection=1;
+        }
+        currentSection = localStorage.currentSection;
+
+
+        langDict1 = JSON.parse(localStorage.langDict1);
+        langDict2 = JSON.parse(localStorage.langDict2);
+        langDict3 = JSON.parse(localStorage.langDict3);
+        langDict = JSON.parse(localStorage.getItem('langDict' + currentSection));
+
+
+
+        lessonDict1 = JSON.parse(localStorage.lessonDict1);
+        lessonDict2 = JSON.parse(localStorage.lessonDict2);
+        lessonDict3 = JSON.parse(localStorage.lessonDict3);
+        lessonDict = JSON.parse(localStorage.getItem('lessonDict' + currentSection));
+        currentLang = localStorage.currentLang; yourLang = localStorage.yourLang;
+        xpDict = JSON.parse(localStorage.xpDict);
+        xp = xpDict[currentLang + "-" + yourLang];
+
+        section2Limit = 3; //when currentLevel reaches this level, section 2 will unlock
+        section3Limit = 5; //when currentLevel reaches this level, section 3 will unlock
+
+
+        currentLang = localStorage.currentLang;
+        yourLang = localStorage.yourLang;
+
+        currentLevel1 = langDict1[currentLang + "-" + yourLang];
+        currentLevel2 = langDict2[currentLang + "-" + yourLang];
+        currentLevel3 = langDict3[currentLang + "-" + yourLang];
+
+        currentLevel = langDict[currentLang + "-" + yourLang];
+        currentLesson = lessonDict[currentLang + "-" + yourLang];
+        console.log(currentLevel)
+
+        function ShowSecText() {
+            $('.sec-text').fadeOut(0);
+            $(`#${yourLang}-sec${currentSection}`).fadeIn(0);
+        }
+        ShowSecText();
+
+        maxSection = 1;
+        if (currentLevel1 > section2Limit) {
+            maxSection = 2; //maxSection tells what is the maximum section unlocked
+        }
+        if (currentLevel2 > section3Limit) {
+            maxSection = 3;
+        }
+
+        localStorage.currentSection = parseInt(currentSection);
+        localStorage.maxSection = parseInt(maxSection);
+        console.log('currentSection', currentSection);
+
+        if (maxSection == 2) {
+            $("#sec2").css({ backgroundColor: '#1cb0f6' });
+            $("#sec2 .section-ct").css({ color: '#fff' });
+            $("#sec2 .sec-img").attr('src', 'res/image/character/lion_young.webp');
+            $("#btn2").text('OPEN');
+        } else if (maxSection == 3) {
+            $("#sec2").css({ backgroundColor: '#1cb0f6' });
+            $("#sec2 .section-ct").css({ color: '#fff' });
+            $("#sec2 .sec-img").attr('src', 'res/image/character/lion_young.webp');
+            $("#sec2 .section-ct .btn").text('OPEN');
+
+            $("#sec3").css({ backgroundColor: '#ff87d1' });
+            $("#sec3 .section-ct").css({ color: '#fff' });
+            $("#sec3 .sec-img").attr('src', 'res/image/character/lion_teen.webp');
+            $("#btn3").text('OPEN');
+        }
+
+        $("#btn1").click(function () {
+            setTimeout(() => {
+                $(".section-con").css({ transform: 'translateX(-200vw)' });
+            }, 400);
+            if (currentSection == 1) {
+                return
+            }
+            currentSection = 1;
+            localStorage.currentSection=1;
+            langDict = JSON.parse(localStorage.getItem('langDict' + currentSection));
+            lessonDict = JSON.parse(localStorage.getItem('lessonDict' + currentSection));
+            currentLevel = langDict[currentLang + "-" + yourLang];
+            currentLesson = lessonDict[currentLang + "-" + yourLang];
+            _crctDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-crct" + currentSection));
+            $(".sec-bg").css({backgroundColor:'#00af86'});
+            ShowSecText();
+            ctAppend();
+        });
+        $("#btn2").click(function () {
+            setTimeout(() => {
+                $(".section-con").css({ transform: 'translateX(-200vw)' });
+            }, 400);
+            if (maxSection >= 2 && currentSection !=2) {
+                currentSection = 2;
+                localStorage.currentSection=2;
+                langDict = JSON.parse(localStorage.getItem('langDict' + currentSection));
+                lessonDict = JSON.parse(localStorage.getItem('lessonDict' + currentSection));
+                currentLevel = langDict[currentLang + "-" + yourLang];
+                currentLesson = lessonDict[currentLang + "-" + yourLang];
+                _crctDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-crct" + currentSection));
+                $(".sec-bg").css({backgroundColor:'#1cb0f6'});
+                ShowSecText();
+                ctAppend();
+            }
+        });
+
+        _crctDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-crct" + currentSection));
+        // _crctDict[2]=[0,0];
+        // // console.log(_crctDict);
+        if (_crctDict == null) {
+            localStorage.setItem(currentLang + "-" + yourLang + "-crct" + currentSection, '{"1":[0,0]}');
+            _crctDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-crct" + currentSection));
+        }
+        _crctDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-crct" + currentSection));
+
+        $(".change").click(function () {
+            setTimeout(() => {
+                $(".section-con").css({ transform: 'translateX(0)' });
+            }, 400);
+        });
+
+        // if (localStorage.sectionSelected == null) {
+        //     $(".section-con").css({ left: '0%' });
+        // }
+
+        $(".xp").text(xp + " XP");
+        tmpXp = 0;
+        _len = Object.keys(xpDict).length;
+        for (i = 0; i < _len; i++) {
+            tmpXp += Object.values(xpDict)[i];
+        }
+        $(".pts").text(tmpXp + " Pts");
+
+        var colorDict = {
+            "green": "#0b8e02",
+            "darkGreen": '#055107',
+            "transparentGreen": '#06bc0694',
+            "red": '#b91111',
+            "darkRed": '#620101',
+            "transparentRed": '#cd2020d9'
+        };
+        if (localStorage.colorDict == null)
+            localStorage.setItem("colorDict", JSON.stringify(colorDict));
+
+        function langTxt(index) {
+            if (index == "eng") return "English";
+            else if (index == "hin") return "Hindi";
+            else if (index == "tam") return "Tamil";
+            else if (index == "mal") return "Malayalam";
+        }
+
+        $(".top-txt").append(`${langTxt(currentLang)} > ${langTxt(yourLang)}`);
+
+
+        localStorage.removeItem("quiz");
+        localStorage.removeItem("quizWon");
+        function unitClick(unitLevel) {
+            localStorage.select_unit = unitLevel;
+            setTimeout(() => { window.parent.location = "word.html"; }, 200);
+        }
+        appendingLevel = 0;
+        color_ = ['red', 'violet', 'orange', 'brown', 'blue', 'pink'];
+        function unitAppend(str, colorIndex) {
+            appendingLevel++;
+            $(".lesson-bg").append(`
+            <div class="unit-bg ${color_[colorIndex]}" id="lev${appendingLevel}">
+                <div class="less-txt">${LessonTxt(appendingLevel)}</div>
+                <img src="res/image/unit_img/s${currentSection}/${appendingLevel}.png" class="unit-img">
+                <div class="unit-txt">Unit ${appendingLevel}</div>
+                <div class="unit-des">${str}</div>
+                <div class="l-btn" id="ct${appendingLevel}" onclick='clickFunc(${appendingLevel}); localStorage.select_unit=${appendingLevel};'>${LearnTxt(appendingLevel)}</div>
+                ${AppendUnitNote(appendingLevel)}
+            </div>            
+            `);
+
+        }
+
+        // function SectionLock(section_) {
+        //     $(".lesson-bg").append(`
+
+        //     `);
+        // }
+
+        function LearnTxt(level) {
+            if (level < currentLevel) {
+                //practice
+                return 'PRACTICE';
+            } else if (level == currentLevel) {
+                return 'LEARN';
+            } else {
+                return 'LOCKED';
+            }
+        }
+        function AppendUnitNote(level) {
+            if (level <= currentLevel) {
+                return `<img src="res/image/note.png" class="unit-note" onclick="unitClick(${level})">`;
+            } else {
+                return '';
+            }
+        }
+        function LessonFunc() {
+            if (currentSection > 1) {
+                return 1;
+            } else {
+                return 2;
+            }
+        }
+        fullPercent = [];
+        function LessonTxt(level) {
+            if (level < currentLevel) {
+                //show %
+                if (_crctDict[appendingLevel] == null) {
+                    percent_ = 0;
+                } else {
+                    percent_ = ((_crctDict[appendingLevel][0] / _crctDict[appendingLevel][1]) * 100).toFixed(0);
+                }
+                if (isNaN(percent_))
+                    percent_ = 0;
+                if (percent_ >= 100) {
+                    percent_=100;
+                    fullPercent.push(level);
+                }
+                return percent_ + '%';
+            } else if (level == currentLevel) {
+                //show lesson
+                return `<span>${currentLesson}</span>/<span>${LessonFunc()}</span>`;
+            } else {
+                return "<img src='res/image/lock.png' class='lock-img'>";
+            }
+        }
+        // function jumpAppend() {
+        //     if (appendingLevel >= currentLevel)
+        //         return $(".lesson-bg").append(`<div class="jump-ct jump-ct-${unitCount - 1}" onclick="localStorage.quiz=${appendingLevel + 1}; jumpClickFunc(${appendingLevel + 1})"><img src="res/image/skip.svg" class="lock-img"></div>`);
+        // }
+
+        function ctAppend() {
+            appendingLevel=0;
+            $(".lesson-bg").empty();
+            if (currentSection == 1) {
+                //Section 1
+                unitAppend("Basic and common words", 0);
+                unitAppend("About family and relationship", 1);
+                unitAppend("About Animals, About Numbers", 2);
+                unitAppend("About Fruits, About People", 3);
+                unitAppend("About Vegetables, About Food", 4);
+            } else if (currentSection == 2) {
+                //Section 2
+                unitAppend("At Hotel", 0);
+                unitAppend("At Restaurant", 1);
+                unitAppend("At Bank", 2);
+                unitAppend("At Library", 3);
+                unitAppend("At Shopping Mall", 4);
+            }
+        }
+        ctAppend();
+
+        function clickFunc(clickedLevel) {
+            if (clickedLevel <= currentLevel) {
+                //Proceed to level
+                localStorage.openedLevel = clickedLevel;
+                parent.location = "ques/ques.html";
+            }
+        }
+        function jumpClickFunc(clickedLevel) {
+            //opened a jump level
+            localStorage.openedLevel = clickedLevel;
+            parent.location = "ques/ques.html";
+        }
+
+
+        // function checkAppend() {
+        //     if (appendingLevel > currentLevel) {
+        //         //locked level
+        //         $("#ct" + appendingLevel).append("<img src='res/image/lock.png' class='lock-img'>");
+        //     }
+        //     else if (appendingLevel < currentLevel) {
+        //         //unlocked level
+        //         percent_ = ((_crctDict[appendingLevel][0] / _crctDict[appendingLevel][1]) * 100).toFixed(0);
+        //         if (isNaN(percent_))
+        //             percent_ = 0;
+        //         if (percent_ == 100) {
+        //             $("#ct" + appendingLevel).css({ backgroundColor: '#01a80c', boxShadow: '0px 4px #01620b' });
+        //             $(".tick" + appendingLevel).attr('src', 'res/image/white-tick.svg');
+        //         }
+        //     }
+        //     else if (currentLevel == appendingLevel) {
+        //         //current level
+        //         $("#ct" + currentLevel).append(`<div class="less-txt"><span>${currentLesson}</span>/<span>${lessonCount[appendingLevel]}</span></div>`);
+        //     }
+        // }
+
+        for (i in fullPercent) {
+            console.log(fullPercent[i]);
+            $("#lev" + fullPercent[i]).css({ backgroundColor: '#008109', boxShadow: '0px 4px #01620b' });
+        }
+        if (currentLevel > 1) {
+            location.replace("#ct" + (currentLevel - 1));
+        }
+
+        $(".settings-nav").click(function () {
+            $(".logout-txt").css({ visibility: 'visible' });
+            $(".con").css({ transform: 'translateX(-200vw)' });
+            setTimeout(() => { $(".settings-con").css({ transform: 'translateX(0%)' }); }, 300);
+        });
+        $(".home-nav").click(function () {
+            $(".logout-txt").css({ visibility: 'hidden' });
+            $(".con").css({ transform: 'translateX(-200vw)' });
+            setTimeout(() => { $(".level-con").css({ transform: 'translateX(0%)' }); }, 300);
+        });
+        $(".leader-nav").click(function () {
+            setTimeout(() => { parent.location = "leaderboard.html"; }, 300);
+        });
+        $(".alphabet-nav").click(function () {
+            $(".logout-txt").css({ visibility: 'hidden' });
+            $(".con").css({ transform: 'translateX(-200vw)' });
+            setTimeout(() => { $(".alphabet-con").css({ transform: 'translateX(0%)' }); }, 300);
+        });
+
+    </script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
         import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+        var courseChangeSync = localStorage.courseChangeSync;
+        var level1ChangeSync = localStorage.level1ChangeSync;
+        var level2ChangeSync = localStorage.level2ChangeSync;
+        var level3ChangeSync = localStorage.level3ChangeSync;
+        var crct1ChangeSync = localStorage.crct1ChangeSync;
+        var crct2ChangeSync = localStorage.crct2ChangeSync;
+        var crct3ChangeSync = localStorage.crct3ChangeSync;
 
         function initialiseFirebase(type) {
             const firebaseConfig = {
@@ -435,7 +997,8 @@
                         console.log(user.uid);
                     } else {
                         // User not logged in or has just logged out.
-                        console.log("User logged out");
+                        alert("User Logout")
+                        location.replace("login.html");
                     }
                 });
                 syncData("storeOnly");
@@ -445,111 +1008,139 @@
         }
 
         function syncData(type) {
-            if (type == "storeOnly") {
-                const db = getDatabase();
-                console.log(db);
+            const db = getDatabase();
+            console.log(db);
+            if (courseChangeSync > 1 || localStorage.firstSync == null) {
                 set(ref(db, 'users/' + localStorage.uid + '/i'), {
                     cl: localStorage.currentLang,
                     yl: localStorage.yourLang
-                })
-                set(ref(db, 'users/' + localStorage.uid + '/j'), {
-                    laD: localStorage.langDict,
-                    leD: localStorage.lessonDict
-                })
-                set(ref(db, 'users/' + localStorage.uid + '/xp'), {
-                    xp: localStorage.xpDict,
-                })
-                setTimeout(() => {
-                    console.log(localStorage.currentLang);
-                    var currentLang = localStorage.currentLang;
-                    var yourLang = localStorage.yourLang;
-
-                    if (localStorage.getItem(currentLang + "-" + yourLang + "-crct") == null) {
-                        var crctDict = { "1": 0 }; localStorage.setItem(currentLang + "-" + yourLang + "-crct", JSON.stringify(crctDict));
-                        var totalDict = { "1": 0 }; localStorage.setItem(currentLang + "-" + yourLang + "-total", JSON.stringify(totalDict));
-                    }
-
-                    var _crctDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-crct"));
-                    var _totalDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-total"));
-                    console.log(_crctDict);
-                    set(ref(db, 'users/' + localStorage.uid + '/k/' + currentLang + "-" + yourLang), {
-                        crct: JSON.stringify(_crctDict),
-                        total: JSON.stringify(_totalDict)
-                    })
-                        .then(() => {
-                            // Data saved successfully!
-                            console.log("Saved Successfully");
-                            localStorage.firstSync = "done";
-                            localStorage.canSync = 0;
-                        })
-                        .catch((error) => {
-                            // The write failed...
-                            console.log(error);
-                        });
-
-                }, 1000);
-            } else if (type == "signout") {
-                if (localStorage.canSync > 0) {
-                    const db = getDatabase();
-                    console.log(db);
-                    set(ref(db, 'users/' + localStorage.uid + '/i'), {
-                        cl: localStorage.currentLang,
-                        yl: localStorage.yourLang
-                    })
-                    set(ref(db, 'users/' + localStorage.uid + '/j'), {
-                        laD: localStorage.langDict,
-                        leD: localStorage.lessonDict
-                    })
-                    set(ref(db, 'users/' + localStorage.uid + '/xp'), {
-                        xp: localStorage.xpDict,
-                    })
-                    if (localStorage.currentLang + "-" + yourLang + "-crct" == null) {
-                        var crctDict = { "1": 0 }; localStorage.setItem(currentLang + "-" + yourLang + "-crct", JSON.stringify(crctDict));
-                        var totalDict = { "1": 0 }; localStorage.setItem(currentLang + "-" + yourLang + "-total", JSON.stringify(totalDict));
-                    }
-
-                    var _crctDict = JSON.parse(localStorage.getItem(localStorage.currentLang + "-" + localStorage.yourLang + "-crct"));
-                    var _totalDict = JSON.parse(localStorage.getItem(localStorage.currentLang + "-" + localStorage.yourLang + "-total"));
-                    console.log(_crctDict);
-                    set(ref(db, 'users/' + localStorage.uid + '/k/' + localStorage.currentLang + "-" + localStorage.yourLang), {
-                        crct: JSON.stringify(_crctDict),
-                        total: JSON.stringify(_totalDict)
-                    })
-                        .then(() => {
-                            // Data saved successfully!
-                            console.log("Saved Successfully");
-                            localStorage.firstSync = "done";
-                            localStorage.canSync = 0;
-                            const auth = getAuth();
-                            signOut(auth).then(() => {
-                                // Sign-out successful.
-                                localStorage.clear();
-                                location.replace("login.html");
-                            }).catch((error) => {
-                                // An error happened.
-                                console.log(error);
-                                $(".error-txt").fadeIn();
-                            });
-                        })
-                        .catch((error) => {
-                            // The write failed...
-                            console.log(error);
-                        });
-                } else {
-                    const auth = getAuth();
-                    signOut(auth).then(() => {
-                        // Sign-out successful.
-                        localStorage.clear();
-                        location.replace("login.html");
+                }).then(() => {
+                    // Data saved successfully!
+                    console.log("courseChangeSync Saved Successfully");
+                    courseChangeSync = 0;
+                    localStorage.courseChangeSync = 0;
+                }).catch((error) => {
+                    // The write failed...
+                    console.log('courseChangeSync Error:', error);
+                });
+            }
+            var canSyncXp = false;
+            setTimeout(() => {
+                if (level1ChangeSync > 1 || localStorage.firstSync == null) {
+                    canSyncXp = true;
+                    set(ref(db, `users/${localStorage.uid}/j/s1`), {
+                        laD: localStorage.langDict1,
+                        leD: localStorage.lessonDict1,
+                    }).then(() => {
+                        // Data saved successfully!
+                        console.log("level1ChangeSync Saved Successfully");
+                        console.log(localStorage.langDict1);
+                        level1ChangeSync = 0;
+                        localStorage.level1ChangeSync = 0;
                     }).catch((error) => {
-                        // An error happened.
-                        console.log(error);
-                        $(".error-txt").fadeIn();
+                        // The write failed...
+                        console.log('level1ChangeSync Error:', error);
                     });
                 }
 
+                if (level2ChangeSync > 1 || localStorage.firstSync == null) {
+                    canSyncXp = true;
+                    set(ref(db, `users/${localStorage.uid}/j/s2`), {
+                        laD: localStorage.langDict2,
+                        leD: localStorage.lessonDict2,
+                    }).then(() => {
+                        // Data saved successfully!
+                        console.log("level2ChangeSync Saved Successfully");
+                        console.log(localStorage.langDict1);
+                        level2ChangeSync = 0;
+                        localStorage.level2ChangeSync = 0;
+                        console.log(canSyncXp);
+                    }).catch((error) => {
+                        // The write failed...
+                        console.log('level1ChangeSync Error:', error);
+                    });
+                }
+
+                if (level3ChangeSync > 1 || localStorage.firstSync == null) {
+                    canSyncXp = true;
+                    set(ref(db, `users/${localStorage.uid}/j/s3`), {
+                        laD: localStorage.langDict3,
+                        leD: localStorage.lessonDict3,
+                    }).then(() => {
+                        // Data saved successfully!
+                        console.log("level3ChangeSync Saved Successfully");
+                        console.log(localStorage.langDict1);
+                        level3ChangeSync = 0;
+                        localStorage.level3ChangeSync = 0;
+                    }).catch((error) => {
+                        // The write failed...
+                        console.log('level3ChangeSync Error:', error);
+                    });
+                }
+                console.log(canSyncXp);
+                if (canSyncXp) {
+                    set(ref(db, 'users/' + localStorage.uid + '/xp'), {
+                        xp: localStorage.xpDict,
+                    })
+                }
+
+            }, 400);
+
+            if (crct1ChangeSync > 1 || localStorage.firstSync == null) {
+                set(ref(db, 'users/' + localStorage.uid + '/k/' + currentLang + "-" + yourLang + 1), {
+                    crct: JSON.stringify(_crctDict),
+                }).then(() => {
+                    // Data saved successfully!
+                    console.log("crct1ChangeSync Saved Successfully");
+                    crct1ChangeSync = 0;
+                    localStorage.crct1ChangeSync = 0;
+                }).catch((error) => {
+                    // The write failed...
+                    console.log('crct1ChangeSync Error:', error);
+                });
+            }
+            if (crct2ChangeSync > 1 || localStorage.firstSync == null) {
+                set(ref(db, 'users/' + localStorage.uid + '/k/' + currentLang + "-" + yourLang + 2), {
+                    crct: JSON.stringify(_crctDict),
+                }).then(() => {
+                    // Data saved successfully!
+                    console.log("crct2ChangeSync Saved Successfully");
+                    crct2ChangeSync = 0;
+                    localStorage.crct2ChangeSync = 0;
+                }).catch((error) => {
+                    // The write failed...
+                    console.log('crct2ChangeSync Error:', error);
+                });
+            }
+            if (crct3ChangeSync > 1 || localStorage.firstSync == null) {
+                set(ref(db, 'users/' + localStorage.uid + '/k/' + currentLang + "-" + yourLang + 3), {
+                    crct: JSON.stringify(_crctDict),
+                }).then(() => {
+                    // Data saved successfully!
+                    console.log("crct3ChangeSync Saved Successfully");
+                    crct3ChangeSync = 0;
+                    localStorage.crct3ChangeSync = 0;
+                    if (localStorage.firstSync == null) {
+                        localStorage.firstSync = 'done';
+                    }
+                }).catch((error) => {
+                    // The write failed...
+                    console.log('crct3ChangeSync Error:', error);
+                });
             }
 
+            if (type == "signout") {
+                const auth = getAuth();
+                signOut(auth).then(() => {
+                    // Sign-out successful.
+                    localStorage.clear();
+                    location.replace("login.html");
+                }).catch((error) => {
+                    // An error happened.
+                    console.log(error);
+                    $(".error-txt").fadeIn();
+                });
+            }
         }
 
         if (localStorage.canSync == null) localStorage.canSync = 0;
@@ -566,161 +1157,6 @@
         $(".logout-btn").click(function () {
             initialiseFirebase("signout");
         });
-    </script>
-    <script>
-        langDict = JSON.parse(localStorage.langDict);
-            lessonDict = JSON.parse(localStorage.lessonDict);
-            xpDict = JSON.parse(localStorage.xpDict);
-        
-                localStorage.setItem("langDict", JSON.stringify(langDict));
-                localStorage.setItem("lessonDict", JSON.stringify(lessonDict));
-                canSync = parseInt(localStorage.canSync); canSync += 2; localStorage.canSync = canSync;
-
-        currentLang = localStorage.currentLang;
-        yourLang = localStorage.yourLang;
-        
-                window[currentLang + "-" + yourLang + "-crct"] = { "1": 0 };
-                window[currentLang + "-" + yourLang + "-total"] = { "1": 0 };
-        
-        langDict = JSON.parse(localStorage.langDict);
-        lessonDict = JSON.parse(localStorage.lessonDict);
-        currentLang = localStorage.currentLang; yourLang = localStorage.yourLang;
-        xpDict = JSON.parse(localStorage.xpDict);
-        xp = xpDict[currentLang + "-" + yourLang];
-
-        currentLevel = langDict[currentLang + "-" + yourLang];
-        currentLesson = lessonDict[currentLang + "-" + yourLang];
-
-        crctDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-crct"));
-        totalDict = JSON.parse(localStorage.getItem(currentLang + "-" + yourLang + "-total"));
-
-        // console.log(crctDict[1]);
-        // console.log(totalDict[1]);
-
-        location.replace("#ct" + currentLevel);
-
-        $(".xp").text(xp + " XP");
-        tmpXp=0;
-        _len = Object.keys(xpDict).length;
-        for (i=0; i<_len; i++) {
-            tmpXp+=Object.values(xpDict)[i];
-        }
-        $(".pts").text(tmpXp+" Pts");
-
-        var colorDict = {
-            "green": "#0b8e02",
-            "darkGreen": '#055107',
-            "transparentGreen": '#06bc0694',
-            "red": '#b91111',
-            "darkRed": '#620101',
-            "transparentRed": '#cd2020d9'
-        };
-        if (localStorage.colorDict == null)
-            localStorage.setItem("colorDict", JSON.stringify(colorDict));
-
-        function langTxt(index) {
-            if (index == "eng") return "English";
-            if (index == "hin") return "Hindi";
-            if (index == "tam") return "Tamil";
-            if (index == "mal") return "Malayalam";
-        }
-
-        lessonCount = { 1: 4, 2: 4, 3: 4, 4: 3, 5: 4 }
-        localStorage.lessonCount = JSON.stringify(lessonCount);
-        $(".top-txt").append(`${langTxt(currentLang)} > ${langTxt(yourLang)}`);
-
-        appendingLevel = 0;
-        unitCount = 1;
-
-        localStorage.removeItem("quiz");
-        localStorage.removeItem("quizWon");
-        function unitClick(unitLevel) {
-            localStorage.select_unit = unitLevel;
-            setTimeout(() => { window.parent.location = "word.html"; }, 200);
-        }
-
-        function unitAppend(str) {
-            $(".lesson-bg").append(`<div class="unit-bg"><div class="unit-txt">Unit ${unitCount}</div><div class="unit-des">${str}</div><img src="res/image/note.png" class="unit-img" onclick="unitClick(${unitCount})"></div>`); unitCount++;
-        }
-        function jumpAppend() {
-            if (appendingLevel >= currentLevel)
-                return $(".lesson-bg").append(`<div class="jump-ct jump-ct-${unitCount - 1}" onclick="localStorage.quiz=${appendingLevel + 1}; jumpClickFunc(${appendingLevel + 1})"><img src="res/image/skip.svg" class="lock-img"></div>`);
-        }
-        function ctAppend() {
-            unitAppend("Making simple sentences, describing people");
-            for (i = 1; i <= 3; i++) { appendingLevel++; $(".lesson-bg").append(`<div class="les-bg" id="ct${appendingLevel}" onclick='clickFunc(${appendingLevel})'></div>`); checkAppend(); }
-
-            unitAppend("To confirm, knowledge of the house");
-            jumpAppend()
-            for (i = 1; i <= 2; i++) { appendingLevel++; $(".lesson-bg").append(`<div class="les-bg" id="ct${appendingLevel}" onclick='clickFunc(${appendingLevel})'></div>`); checkAppend(); }
-
-            unitAppend("Form the sentences, words");
-            for (i=1; i<=5; i++) {appendingLevel++; $(".lesson-bg").append(`<div class="les-bg" id="ct${appendingLevel}" onclick='clickFunc(${appendingLevel})'></div>`);checkAppend();}
-
-            unitAppend("Office conversation");
-            for (i=1; i<=4; i++) {appendingLevel++; $(".lesson-bg").append(`<div class="les-bg" id="ct${appendingLevel}" onclick='clickFunc(${appendingLevel})'></div>`);checkAppend();}
-
-            unitAppend("Informal conversation");
-            for (i=1; i<=7; i++) {appendingLevel++; $(".lesson-bg").append(`<div class="les-bg" id="ct${appendingLevel}" onclick='clickFunc(${appendingLevel})'></div>`);checkAppend();}
-
-        }
-        ctAppend();
-
-        function clickFunc(clickedLevel) {
-            if (clickedLevel <= currentLevel) {
-                //Proceed to level
-                localStorage.openedLevel = clickedLevel;
-                parent.location = "ques/ques.html";
-            }
-        }
-        function jumpClickFunc(clickedLevel) {
-            //opened a jump level
-            localStorage.openedLevel = clickedLevel;
-            parent.location = "ques/ques.html";
-        }
-
-
-        function checkAppend() {
-            if (appendingLevel > currentLevel) {
-                $("#ct" + appendingLevel).append("<img src='res/image/lock.png' class='lock-img'>");
-            }
-            if (appendingLevel < currentLevel) {
-                percent_ = ((crctDict[appendingLevel] / totalDict[appendingLevel]) * 100).toFixed(0);
-                if (isNaN(percent_))
-                    percent_ = 0;
-                $("#ct" + appendingLevel).append(`<img src="res/image/tick.svg" class="lock-img tick${appendingLevel}"> <div class="percent-txt">${percent_}%</div`);
-                if (percent_ == 100) {
-                    $("#ct" + appendingLevel).css({ backgroundColor: '#01a80c', boxShadow: '0px 4px #01620b' });
-                    $(".tick" + appendingLevel).attr('src', 'res/image/white-tick.svg');
-                }
-            }
-            if (currentLevel == appendingLevel) {
-                $("#ct" + currentLevel).append(`<div class="less-txt"><span>${currentLesson}</span>/<span>${lessonCount[appendingLevel]}</span></div>`);
-            }
-
-        }
-
-        $(".settings-nav").click(function () {
-            $(".logout-txt").css({ visibility: 'visible' });
-            $(".con").css({ transform: 'translateX(-100%)' });
-            setTimeout(() => { $(".settings-con").css({ transform: 'translateX(0%)' }); }, 300);
-        });
-        $(".home-nav").click(function () {
-            $(".logout-txt").css({ visibility: 'hidden' });
-            $(".con").css({ transform: 'translateX(-100%)' });
-            setTimeout(() => { $(".level-con").css({ transform: 'translateX(0%)' }); }, 300);
-        });
-        $(".leader-nav").click(function () {
-            setTimeout(() => { parent.location = "leaderboard.html"; }, 300);
-        });
-        $(".alphabet-nav").click(function () {
-            $(".logout-txt").css({ visibility: 'hidden' });
-            $(".con").css({ transform: 'translateX(-100%)' });
-            setTimeout(() => { $(".alphabet-con").css({ transform: 'translateX(0%)' }); }, 300);
-        });
-
-        
-
     </script>
 </body>
 
